@@ -1,0 +1,6 @@
+{
+  "name": "FoodHub: POS, Tienda Online y Asistente IA para PYMEs",
+  "description": "Plataforma SaaS integral para restaurantes al estilo de Square, Uber y Shopify. Incluye panel de administración, punto de venta físico (POS), tienda online autogestionada y un asistente de atención al cliente potenciado por IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
