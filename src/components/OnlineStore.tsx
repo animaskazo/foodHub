@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useApp } from "../context/AppContext";
 import { Product, OrderItem, Variant } from "../types";
-import { AiAssistant } from "./AiAssistant";
 import { 
   Flame, Pizza, Salad, CupSoda, IceCream, Plus, Minus, Trash, 
   ShoppingBag, ShoppingCart, X, HelpCircle, Bot, Phone, MapPin, 
@@ -147,10 +146,6 @@ export const OnlineStore: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 opacity-5 bg-[radial-gradient(circle_at_bottom_left,var(--color-emerald-500),transparent_50%)] pointer-events-none"></div>
 
         <div className="space-y-4 max-w-xl z-10">
-          <div className="flex items-center gap-1 bg-amber-500/10 text-amber-400 px-3 py-1 rounded-full border border-amber-500/20 text-[10px] uppercase font-mono tracking-wider w-max">
-            <Bot className="w-3.5 h-3.5" />
-            Asistente IA Conectado
-          </div>
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight leading-none text-white">
             Ordena Fácil, Rápido y Personalizado.
           </h1>
@@ -567,62 +562,7 @@ export const OnlineStore: React.FC = () => {
         </div>
       )}
 
-      {/* 7. FLOATING AI ASSISTANT TRIGGERS */}
-      <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
-        {/* Expanded Chatbot Modal */}
-        {isChatOpen && (
-          <div className="w-[360px] h-[500px] bg-white rounded-3xl border border-neutral-200 shadow-2xl overflow-hidden flex flex-col animate-scale-up">
-            <div className="bg-neutral-950 text-white p-4 flex items-center justify-between shrink-0">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 bg-amber-400 rounded-xl flex items-center justify-center text-neutral-950 font-bold shadow-md">
-                  <Bot className="w-4 h-4 text-neutral-950" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-xs tracking-wide">FoodHub Inteligente</h4>
-                  <p className="text-[10px] text-emerald-400 font-mono tracking-wider uppercase flex items-center gap-1">
-                    <span className="w-1 h-1 bg-emerald-400 rounded-full animate-ping"></span>
-                    Online y Asistente
-                  </p>
-                </div>
-              </div>
-              <button
-                id="btn-close-ai-chat"
-                onClick={() => setIsChatOpen(false)}
-                className="text-neutral-400 hover:text-white p-1 rounded-full hover:bg-neutral-800 transition-colors cursor-pointer"
-              >
-                <X className="w-4.5 h-4.5" />
-              </button>
-            </div>
 
-            {/* Embedded chatbot logic */}
-            <div className="flex-1 min-h-0 bg-neutral-50">
-              <AiAssistant 
-                onAddToCart={handleApplyAiSuggestedItem} 
-                isEmbedded={true}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* Floating Bubble Toggle Button */}
-        <button
-          id="btn-toggle-ai-chat"
-          onClick={() => setIsChatOpen(!isChatOpen)}
-          className="w-14 h-14 bg-neutral-950 hover:bg-neutral-800 hover:scale-105 active:scale-95 text-white rounded-full flex items-center justify-center shadow-2xl transition-all border border-neutral-800 cursor-pointer relative group"
-          title="Hablar con FoodHub IA"
-        >
-          {isChatOpen ? (
-            <X className="w-6 h-6 animate-spin-once" />
-          ) : (
-            <>
-              <Bot className="w-6 h-6 text-white animate-bounce-slow" />
-              <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-amber-400 rounded-full flex items-center justify-center border-2 border-neutral-950">
-                <span className="w-1.5 h-1.5 bg-neutral-950 rounded-full animate-ping"></span>
-              </span>
-            </>
-          )}
-        </button>
-      </div>
 
     </div>
   );

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useApp } from "../context/AppContext";
-import { 
-  Rocket, 
-  Terminal, 
-  ShoppingBag, 
-  Sparkles, 
-  ArrowRight, 
-  CheckCircle, 
-  TrendingUp, 
-  ShieldCheck, 
-  Zap, 
-  HeartHandshake, 
+import {
+  Rocket,
+  Terminal,
+  ShoppingBag,
+  Sparkles,
+  ArrowRight,
+  CheckCircle,
+  TrendingUp,
+  ShieldCheck,
+  Zap,
+  HeartHandshake,
   Calculator,
   Check,
   Building,
@@ -39,7 +39,7 @@ export const LandingPage: React.FC = () => {
   const [phone, setPhone] = useState("");
   const [restaurantType, setRestaurantType] = useState("Hamburguesería");
   const [monthlyOrders, setMonthlyOrders] = useState("500 - 1000");
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [assignedQueue, setAssignedQueue] = useState(128);
@@ -69,25 +69,44 @@ export const LandingPage: React.FC = () => {
   // FAQ state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!businessName || !ownerName || !email || !phone) return;
 
     setIsSubmitting(true);
     
-    setTimeout(() => {
-      addWaitlistProspect({
-        businessName,
-        ownerName,
-        email,
-        phone,
-        restaurantType,
-        monthlyOrders
+    try {
+      await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          businessName,
+          ownerName,
+          email,
+          phone,
+          restaurantType,
+          monthlyOrders
+        })
       });
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setAssignedQueue(164 + waitlist.length);
-    }, 1200);
+    } catch (error) {
+      console.error("Error submitting waitlist:", error);
+    }
+    
+    // Add to local state context
+    addWaitlistProspect({
+      businessName,
+      ownerName,
+      email,
+      phone,
+      restaurantType,
+      monthlyOrders
+    });
+    
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    setAssignedQueue(164 + waitlist.length);
   };
 
   // Savings Math
@@ -153,7 +172,7 @@ export const LandingPage: React.FC = () => {
 
   return (
     <div id="foodhub-artisanal-landing" className="bg-[#FAF9F6] text-neutral-900 min-h-screen selection:bg-neutral-900 selection:text-white font-sans pb-24 antialiased">
-      
+
       {/* Top Banner / Announcement with sleek black backing */}
       <div className="bg-neutral-950 text-neutral-100 text-center py-2.5 px-4 text-xs font-medium tracking-wide">
         <span className="inline-flex items-center gap-1.5 font-mono">
@@ -172,7 +191,7 @@ export const LandingPage: React.FC = () => {
             <span className="font-display font-extrabold text-xl tracking-tight text-neutral-950">foodhub</span>
             <span className="bg-neutral-100 border border-neutral-200 text-neutral-800 px-2 py-0.5 rounded-full text-[10px] font-bold font-mono">SAAS</span>
           </div>
-          
+
           <div className="hidden md:flex items-center gap-4 lg:gap-6 text-xs lg:text-sm font-medium text-neutral-600">
             <a href="#solucion-integrada" className="hover:text-neutral-950 transition-colors">Características</a>
             <a href="#simulador" className="hover:text-neutral-950 transition-colors">Simulador</a>
@@ -183,7 +202,7 @@ export const LandingPage: React.FC = () => {
           <div className="flex items-center gap-3 relative">
             {/* Custom interactive dropdown for Demos */}
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setIsDemosOpen(!isDemosOpen)}
                 className="bg-white hover:bg-neutral-50 text-neutral-800 px-3.5 py-2 rounded-xl text-xs font-display font-bold tracking-wide transition-all border border-neutral-200 shadow-sm flex items-center gap-1.5 cursor-pointer"
               >
@@ -202,7 +221,7 @@ export const LandingPage: React.FC = () => {
                       className="absolute right-0 mt-2 w-48 bg-white border border-neutral-200 rounded-2xl shadow-xl z-50 p-2 py-2.5 space-y-1"
                     >
                       <span className="text-[9px] font-bold text-neutral-400 uppercase tracking-widest px-3 py-1 block">Módulos del Sistema</span>
-                      
+
                       <button
                         onClick={() => {
                           setIsDemosOpen(false);
@@ -241,8 +260,8 @@ export const LandingPage: React.FC = () => {
               </AnimatePresence>
             </div>
 
-            <a 
-              href="#waitlist-form-card" 
+            <a
+              href="#waitlist-form-card"
               className="bg-neutral-950 hover:bg-neutral-800 text-white px-4 py-2 rounded-xl text-xs font-display font-bold tracking-wide transition-all shadow-sm"
             >
               Unirse
@@ -255,15 +274,15 @@ export const LandingPage: React.FC = () => {
       <section className="relative overflow-hidden pt-12 sm:pt-20 pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
+
             {/* Left: Headline & Key Advantages */}
             <div className="lg:col-span-7 space-y-8 text-left">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold tracking-tight text-neutral-950 leading-[1.05]">
-                La plataforma de venta <span className="text-neutral-950 underline decoration-neutral-300 decoration-wavy">sin comisiones</span> que tu restaurante merece.
+                La plataforma de venta sin comisiones que tu negocio merece.
               </h1>
 
               <p className="text-neutral-600 text-base sm:text-lg max-w-2xl leading-relaxed">
-                Diseñado exclusivamente para el rubro gastronómico moderno. FoodHub integra un <strong>POS de caja ultrarrápido</strong>, tu propio <strong>e-commerce web</strong> independiente de las apps tradicionales de delivery, y un <strong>Asistente inteligente con IA (Gemini)</strong> que atiende comensales por ti.
+                Diseñado exclusivamente para el rubro gastronómico moderno. FoodHub integra un <strong>Hub de atención ultrarrápido</strong>, tu propio <strong>e-commerce web</strong> independiente de las apps tradicionales de delivery, y un <strong>Asistente inteligente con IA</strong> que atiende comensales por ti.
               </p>
 
               {/* Grid of Key Features */}
@@ -273,7 +292,7 @@ export const LandingPage: React.FC = () => {
                     <Check className="w-4 h-4 stroke-[3]" />
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-sm text-neutral-900">POS Táctil Multicanal</h4>
+                    <h4 className="font-serif font-bold text-sm text-neutral-900">Punto de venta Multicanal</h4>
                     <p className="text-xs text-neutral-500">Manejo de caja, cierres de turnos y arqueos instantáneos.</p>
                   </div>
                 </div>
@@ -293,8 +312,8 @@ export const LandingPage: React.FC = () => {
                     <Check className="w-4 h-4 stroke-[3]" />
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-sm text-neutral-900">Gemini AI Integrado</h4>
-                    <p className="text-xs text-neutral-500">Soporte automático para resolver dudas de ingredientes y alergias.</p>
+                    <h4 className="font-serif font-bold text-sm text-neutral-900">Chat de IA Integrado</h4>
+                    <p className="text-xs text-neutral-500">Ten un vendedor disponible 24/7.</p>
                   </div>
                 </div>
 
@@ -320,14 +339,14 @@ export const LandingPage: React.FC = () => {
                   <div className="flex items-center gap-1 text-amber-500">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-500" />)}
                   </div>
-                  <p className="text-xs text-neutral-500">Elegido por más de 120 dueños de locales gastronómicos en Latam.</p>
+                  <p className="text-xs text-neutral-500">Más de 100 negocios ya se inscribieron en la lista de espera.</p>
                 </div>
               </div>
             </div>
 
             {/* Right: High-fidelity Premium Sign-up Card */}
             <div id="waitlist-form-card" className="lg:col-span-5">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -353,12 +372,12 @@ export const LandingPage: React.FC = () => {
                       <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Nombre de tu Restaurante</label>
                       <div className="relative">
                         <Building className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400" />
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           required
                           value={businessName}
                           onChange={(e) => setBusinessName(e.target.value)}
-                          placeholder="Ej. Burguesería San Telmo" 
+                          placeholder="Ej. Burguesería San Telmo"
                           className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
                         />
                       </div>
@@ -369,12 +388,12 @@ export const LandingPage: React.FC = () => {
                       <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Nombre del Propietario</label>
                       <div className="relative">
                         <UserIcon className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400" />
-                        <input 
-                          type="text" 
+                        <input
+                          type="text"
                           required
                           value={ownerName}
                           onChange={(e) => setOwnerName(e.target.value)}
-                          placeholder="Ej. Sofía Mendoza" 
+                          placeholder="Ej. Sofía Mendoza"
                           className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
                         />
                       </div>
@@ -386,27 +405,27 @@ export const LandingPage: React.FC = () => {
                         <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">E-mail Corporativo</label>
                         <div className="relative">
                           <Mail className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
-                          <input 
-                            type="email" 
+                          <input
+                            type="email"
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder="sofia@negocio.com" 
+                            placeholder="sofia@negocio.com"
                             className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
                           />
                         </div>
                       </div>
-                      
+
                       <div className="space-y-1">
                         <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Teléfono Móvil</label>
                         <div className="relative">
                           <Phone className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
-                          <input 
-                            type="tel" 
+                          <input
+                            type="tel"
                             required
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
-                            placeholder="+56 9 8765 4321" 
+                            placeholder="+56 9 8765 4321"
                             className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
                           />
                         </div>
@@ -419,7 +438,7 @@ export const LandingPage: React.FC = () => {
                         <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Rubro Principal</label>
                         <div className="relative">
                           <Utensils className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
-                          <select 
+                          <select
                             value={restaurantType}
                             onChange={(e) => setRestaurantType(e.target.value)}
                             className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:bg-white cursor-pointer transition-all appearance-none"
@@ -439,7 +458,7 @@ export const LandingPage: React.FC = () => {
                         <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Pedidos Mensuales</label>
                         <div className="relative">
                           <TrendingUp className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
-                          <select 
+                          <select
                             value={monthlyOrders}
                             onChange={(e) => setMonthlyOrders(e.target.value)}
                             className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:bg-white cursor-pointer transition-all appearance-none"
@@ -472,13 +491,13 @@ export const LandingPage: React.FC = () => {
                         </>
                       )}
                     </button>
-                    
+
                     <p className="text-[10px] text-center text-neutral-400">
                       Sin compromisos financieros. Tu tarifa plana de lanzamiento garantizada.
                     </p>
                   </form>
                 ) : (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="text-center space-y-6 py-4"
@@ -486,7 +505,7 @@ export const LandingPage: React.FC = () => {
                     <div className="inline-flex items-center justify-center bg-neutral-100 text-neutral-950 p-4 rounded-full border border-neutral-200 shadow-inner">
                       <CheckCircle className="w-12 h-12 stroke-[2.5]" />
                     </div>
-                    
+
                     <div className="space-y-1">
                       <h3 className="text-2xl font-serif font-black text-neutral-900 tracking-tight">¡Inscripción Exitosa!</h3>
                       <p className="text-xs text-neutral-500 leading-relaxed max-w-sm mx-auto">
@@ -507,14 +526,14 @@ export const LandingPage: React.FC = () => {
                     <div className="pt-3 space-y-2.5">
                       <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-wider block">¿Quieres probar la aplicación ya mismo?</span>
                       <div className="grid grid-cols-2 gap-2">
-                        <button 
+                        <button
                           onClick={() => changeUserRole("admin")}
                           className="bg-white hover:bg-neutral-50 text-neutral-800 font-display font-bold py-2.5 px-3 rounded-xl text-xs border border-neutral-200 shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                         >
                           <ShieldCheck className="w-3.5 h-3.5 text-neutral-950" />
                           <span>Ver Admin</span>
                         </button>
-                        <button 
+                        <button
                           onClick={() => changeUserRole("cajero")}
                           className="bg-white hover:bg-neutral-50 text-neutral-800 font-display font-bold py-2.5 px-3 rounded-xl text-xs border border-neutral-200 shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                         >
@@ -539,11 +558,11 @@ export const LandingPage: React.FC = () => {
             CONSTRUIDO CON INFRAESTRUCTURA PREMIUM COMPATIBLE
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-60 grayscale hover:grayscale-0 transition-all">
-            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">SQUARE_READY</span>
-            <span className="font-serif italic font-extrabold text-base tracking-tight text-neutral-800">Shopify API</span>
-            <span className="font-sans font-black text-sm tracking-tight text-neutral-800">Google Gemini</span>
-            <span className="font-sans font-medium text-xs tracking-wider text-neutral-800">🧾 BOLETA ELECTRONICA</span>
-            <span className="font-mono text-xs text-neutral-800">SSL_ENCRYPTED</span>
+            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">SUPABASE</span>
+            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">GEMINI API</span>
+            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">DATOS ENCRIPTADOS</span>
+            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">RESEND</span>
+            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">KAPSO</span>
           </div>
         </div>
       </section>
@@ -560,20 +579,19 @@ export const LandingPage: React.FC = () => {
 
         {/* Tab Switcher - Square Hardware Style */}
         <div className="bg-white border border-neutral-200 rounded-3xl overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-0">
-          
+
           {/* Left: Tab Selectors */}
           <div className="lg:col-span-4 border-r border-neutral-200 bg-neutral-50/50 p-6 flex flex-col justify-between">
             <div className="space-y-2">
               <h3 className="font-bold text-neutral-400 text-xs mb-4 uppercase tracking-wider font-mono">Selecciona un Módulo</h3>
-              
+
               {/* Tab 1: POS */}
-              <button 
+              <button
                 onClick={() => setActiveSimTab("pos")}
-                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${
-                  activeSimTab === "pos" 
-                    ? "bg-neutral-950 border-neutral-950 text-white shadow-sm" 
-                    : "border-transparent hover:bg-neutral-100 text-neutral-500"
-                }`}
+                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "pos"
+                  ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
+                  : "border-transparent hover:bg-neutral-100 text-neutral-500"
+                  }`}
               >
                 <div className={`p-2.5 rounded-xl ${activeSimTab === "pos" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`}>
                   <Terminal className="w-5 h-5" />
@@ -585,13 +603,12 @@ export const LandingPage: React.FC = () => {
               </button>
 
               {/* Tab 2: Store */}
-              <button 
+              <button
                 onClick={() => setActiveSimTab("store")}
-                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${
-                  activeSimTab === "store" 
-                    ? "bg-neutral-950 border-neutral-950 text-white shadow-sm" 
-                    : "border-transparent hover:bg-neutral-100 text-neutral-500"
-                }`}
+                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "store"
+                  ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
+                  : "border-transparent hover:bg-neutral-100 text-neutral-500"
+                  }`}
               >
                 <div className={`p-2.5 rounded-xl ${activeSimTab === "store" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`}>
                   <ShoppingBag className="w-5 h-5" />
@@ -603,13 +620,12 @@ export const LandingPage: React.FC = () => {
               </button>
 
               {/* Tab 3: AI Assistant */}
-              <button 
+              <button
                 onClick={() => setActiveSimTab("ai")}
-                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${
-                  activeSimTab === "ai" 
-                    ? "bg-neutral-950 border-neutral-950 text-white shadow-sm" 
-                    : "border-transparent hover:bg-neutral-100 text-neutral-500"
-                }`}
+                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "ai"
+                  ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
+                  : "border-transparent hover:bg-neutral-100 text-neutral-500"
+                  }`}
               >
                 <div className={`p-2.5 rounded-xl ${activeSimTab === "ai" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`}>
                   <Sparkles className="w-5 h-5" />
@@ -630,9 +646,9 @@ export const LandingPage: React.FC = () => {
           {/* Right: Simulated Screen View */}
           <div className="lg:col-span-8 p-6 sm:p-10 bg-neutral-950/5 flex items-center justify-center min-h-[440px] relative">
             <div className="absolute inset-0 bg-neutral-950/5 pointer-events-none"></div>
-            
+
             <div className="w-full max-w-md bg-white text-neutral-800 rounded-2xl shadow-lg border border-neutral-200 overflow-hidden flex flex-col h-[380px]">
-              
+
               {/* Device Header Bar */}
               <div className="bg-neutral-900 text-white py-2 px-4 text-[10px] flex justify-between items-center font-mono tracking-wider uppercase">
                 <span>Simulador de Hardware</span>
@@ -644,7 +660,7 @@ export const LandingPage: React.FC = () => {
 
               {/* Interactive Screens */}
               <div className="flex-1 overflow-y-auto p-4 flex flex-col justify-between">
-                
+
                 {/* 1. POS TERMINAL SCREEN */}
                 {activeSimTab === "pos" && (
                   <div className="h-full flex flex-col justify-between space-y-3">
@@ -653,18 +669,18 @@ export const LandingPage: React.FC = () => {
                         <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide font-display">Caja Registradora #1</span>
                         <span className="bg-neutral-100 border border-neutral-200 text-neutral-800 text-[9px] font-bold px-2 py-0.5 rounded-full">Turno Abierto</span>
                       </div>
-                      
+
                       {/* Products to click */}
                       <p className="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider">Toca un plato para agregarlo al carro:</p>
                       <div className="grid grid-cols-2 gap-2">
-                        <button 
+                        <button
                           onClick={() => addPosItem({ id: "burger", name: "Doble Burger", price: 7900 })}
                           className="bg-white border border-neutral-200 hover:border-neutral-950 p-2 rounded-xl text-left hover:bg-neutral-50 transition-all cursor-pointer shadow-sm animate-scale-up"
                         >
                           <h5 className="font-bold text-xs text-neutral-800">🍔 Doble Burger</h5>
                           <span className="text-[10px] text-neutral-950 font-bold font-mono">$7.900 CLP</span>
                         </button>
-                        <button 
+                        <button
                           onClick={() => addPosItem({ id: "beer", name: "Cerveza IPA", price: 4200 })}
                           className="bg-white border border-neutral-200 hover:border-neutral-950 p-2 rounded-xl text-left hover:bg-neutral-50 transition-all cursor-pointer shadow-sm animate-scale-up"
                         >
@@ -751,9 +767,9 @@ export const LandingPage: React.FC = () => {
                       <span className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider block">Adicionales:</span>
                       <div className="flex justify-between items-center text-xs">
                         <label className="flex items-center gap-2 cursor-pointer select-none">
-                          <input 
-                            type="checkbox" 
-                            checked={storeCustomization.extraCheese} 
+                          <input
+                            type="checkbox"
+                            checked={storeCustomization.extraCheese}
                             onChange={(e) => setStoreCustomization(prev => ({ ...prev, extraCheese: e.target.checked }))}
                             className="rounded border-neutral-300 text-neutral-950 focus:ring-neutral-950 w-4 h-4"
                           />
@@ -762,9 +778,9 @@ export const LandingPage: React.FC = () => {
                       </div>
                       <div className="flex justify-between items-center text-xs">
                         <label className="flex items-center gap-2 cursor-pointer select-none">
-                          <input 
-                            type="checkbox" 
-                            checked={storeCustomization.spicy} 
+                          <input
+                            type="checkbox"
+                            checked={storeCustomization.spicy}
                             onChange={(e) => setStoreCustomization(prev => ({ ...prev, spicy: e.target.checked }))}
                             className="rounded border-neutral-300 text-neutral-950 focus:ring-neutral-950 w-4 h-4"
                           />
@@ -800,11 +816,10 @@ export const LandingPage: React.FC = () => {
                   <div className="h-full flex flex-col justify-between space-y-2 animate-scale-up">
                     <div className="flex-1 bg-neutral-50 border border-neutral-200 rounded-xl p-3 flex flex-col space-y-2 overflow-y-auto max-h-[220px] text-xs shadow-inner">
                       {aiChat.map((msg, i) => (
-                        <div key={i} className={`p-2.5 rounded-2xl max-w-[85%] leading-tight ${
-                          msg.sender === "ai" 
-                            ? "bg-white border border-neutral-200/50 self-start text-neutral-800 shadow-sm" 
-                            : "bg-neutral-950 text-white self-end"
-                        }`}>
+                        <div key={i} className={`p-2.5 rounded-2xl max-w-[85%] leading-tight ${msg.sender === "ai"
+                          ? "bg-white border border-neutral-200/50 self-start text-neutral-800 shadow-sm"
+                          : "bg-neutral-950 text-white self-end"
+                          }`}>
                           {msg.text}
                         </div>
                       ))}
@@ -856,9 +871,9 @@ export const LandingPage: React.FC = () => {
         <div className="bg-white border border-neutral-200 rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden">
           {/* Top visual accent bar */}
           <div className="absolute top-0 left-0 w-full h-1.5 bg-neutral-950"></div>
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
+
             {/* Left Column: Sliders */}
             <div className="lg:col-span-7 space-y-6 text-left">
               <div className="space-y-3">
@@ -880,12 +895,12 @@ export const LandingPage: React.FC = () => {
                   <span className="text-neutral-700">Pedidos Mensuales Estimados</span>
                   <span className="text-neutral-950 font-mono text-lg">{ordersCount} pedidos / mes</span>
                 </div>
-                <input 
-                  type="range" 
-                  min="50" 
-                  max="3000" 
+                <input
+                  type="range"
+                  min="50"
+                  max="3000"
                   step="50"
-                  value={ordersCount} 
+                  value={ordersCount}
                   onChange={(e) => setOrdersCount(parseInt(e.target.value))}
                   className="w-full accent-neutral-950 bg-neutral-200 h-2 rounded-lg appearance-none cursor-pointer"
                 />
@@ -902,12 +917,12 @@ export const LandingPage: React.FC = () => {
                   <span className="text-neutral-700">Valor de Ticket Promedio</span>
                   <span className="text-neutral-950 font-mono text-lg">${avgTicket.toLocaleString("es-CL")} CLP</span>
                 </div>
-                <input 
-                  type="range" 
-                  min="4000" 
-                  max="40000" 
+                <input
+                  type="range"
+                  min="4000"
+                  max="40000"
                   step="1000"
-                  value={avgTicket} 
+                  value={avgTicket}
                   onChange={(e) => setAvgTicket(parseInt(e.target.value))}
                   className="w-full accent-neutral-950 bg-neutral-200 h-2 rounded-lg appearance-none cursor-pointer"
                 />
@@ -1019,8 +1034,8 @@ export const LandingPage: React.FC = () => {
 
         <div className="space-y-4">
           {faqData.map((faq, idx) => (
-            <div 
-              key={idx} 
+            <div
+              key={idx}
               className="bg-white border border-neutral-200 rounded-2xl overflow-hidden transition-all shadow-sm hover:shadow-md"
             >
               <button
@@ -1028,11 +1043,10 @@ export const LandingPage: React.FC = () => {
                 className="w-full text-left p-5 font-bold text-neutral-800 flex justify-between items-center cursor-pointer hover:bg-neutral-50/50 transition-colors text-sm sm:text-base font-serif"
               >
                 <span>{faq.q}</span>
-                <ChevronDown className={`w-4.5 h-4.5 text-neutral-950 transition-transform duration-200 ${
-                  openFaqIndex === idx ? "rotate-180" : ""
-                }`} />
+                <ChevronDown className={`w-4.5 h-4.5 text-neutral-950 transition-transform duration-200 ${openFaqIndex === idx ? "rotate-180" : ""
+                  }`} />
               </button>
-              
+
               <AnimatePresence initial={false}>
                 {openFaqIndex === idx && (
                   <motion.div
@@ -1057,7 +1071,7 @@ export const LandingPage: React.FC = () => {
         <div className="bg-neutral-950 text-white rounded-[32px] p-8 sm:p-14 text-center space-y-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute -bottom-10 left-0 w-48 h-48 bg-white/2 rounded-full blur-2xl pointer-events-none"></div>
-          
+
           <div className="max-w-2xl mx-auto space-y-4">
             <span className="font-mono text-neutral-400 font-bold text-xs tracking-widest block uppercase">Únete hoy</span>
             <h3 className="text-3xl sm:text-4xl font-serif font-extrabold tracking-tight leading-none">
@@ -1069,7 +1083,7 @@ export const LandingPage: React.FC = () => {
           </div>
 
           <div className="pt-2 flex flex-col sm:flex-row justify-center gap-4">
-            <a 
+            <a
               href="#waitlist-form-card"
               className="bg-white hover:bg-neutral-100 text-neutral-950 font-display font-bold px-8 py-4 rounded-xl text-xs sm:text-sm transition-all shadow-md inline-flex items-center justify-center gap-2"
             >
