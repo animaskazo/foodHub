@@ -274,7 +274,7 @@ export const PosTerminal: React.FC = () => {
         </div>
 
         {/* Grid de Productos (Venta Rápida) */}
-        <div className="flex-1 overflow-y-auto min-h-0 bg-neutral-50 p-1.5 rounded-2xl border border-neutral-200">
+        <div className="flex-1 overflow-y-auto min-h-0 bg-neutral-50 p-1.5 pb-20 lg:pb-1.5 rounded-2xl border border-neutral-200">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {products
               .filter(p => p.category === selectedCategory && p.isAvailable)
