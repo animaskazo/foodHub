@@ -27,6 +27,7 @@ import {
   Award
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import videoUrl from "../public/video-foodhub.mp4";
 
 export const LandingPage: React.FC = () => {
   const { addWaitlistProspect, waitlist, changeUserRole } = useApp();
@@ -74,7 +75,7 @@ export const LandingPage: React.FC = () => {
     if (!businessName || !ownerName || !email || !phone) return;
 
     setIsSubmitting(true);
-    
+
     try {
       await fetch('/api/waitlist', {
         method: 'POST',
@@ -93,7 +94,7 @@ export const LandingPage: React.FC = () => {
     } catch (error) {
       console.error("Error submitting waitlist:", error);
     }
-    
+
     // Add to local state context
     addWaitlistProspect({
       businessName,
@@ -103,7 +104,7 @@ export const LandingPage: React.FC = () => {
       restaurantType,
       monthlyOrders
     });
-    
+
     setIsSubmitting(false);
     setIsSuccess(true);
     setAssignedQueue(164 + waitlist.length);
@@ -547,6 +548,38 @@ export const LandingPage: React.FC = () => {
               </motion.div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* Premium Video Showcase Section */}
+      <section className="bg-neutral-950 text-white py-20 relative overflow-hidden">
+        {/* Background ambient glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neutral-850/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold tracking-tight text-white">
+              Control total de tu negocio en una sola pantalla
+            </h2>
+            <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
+              Mira cómo se sincronizan las órdenes de tu e-commerce, el flujo del cajero en el POS terminal y la comanda directa a cocina en tiempo real. Rapidez absoluta, sin intermediarios.
+            </p>
+          </div>
+
+          {/* Video Player Mockup */}
+          <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-neutral-850 bg-neutral-900 relative group">
+            <video
+              src={videoUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover aspect-video"
+            />
+            {/* Ambient light overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/45 to-transparent pointer-events-none"></div>
           </div>
         </div>
       </section>

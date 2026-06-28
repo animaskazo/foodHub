@@ -218,10 +218,10 @@ export const PosTerminal: React.FC = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-[calc(100vh-90px)] p-4 animate-fade-in" id="pos-terminal-active-view">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 min-h-[calc(100vh-90px)] lg:h-[calc(100vh-90px)] p-4 animate-fade-in" id="pos-terminal-active-view">
       
       {/* 1. SECCION IZQUIERDA (CATALOGO DE POS) - 7 columnas */}
-      <div className="lg:col-span-7 flex flex-col justify-between gap-4 h-full overflow-hidden">
+      <div className="lg:col-span-7 flex flex-col justify-between gap-4 lg:h-full lg:overflow-hidden">
         
         {/* Superior Header de Caja */}
         <div className="bg-white p-4 rounded-2xl border border-neutral-200 shadow-sm flex flex-wrap items-center justify-between gap-3 shrink-0">
@@ -274,7 +274,7 @@ export const PosTerminal: React.FC = () => {
         </div>
 
         {/* Grid de Productos (Venta Rápida) */}
-        <div className="flex-1 overflow-y-auto min-h-0 bg-neutral-50 p-1.5 pb-20 lg:pb-1.5 rounded-2xl border border-neutral-200">
+        <div className="flex-1 lg:overflow-y-auto lg:min-h-0 bg-neutral-50 p-1.5 rounded-2xl border border-neutral-200">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {products
               .filter(p => p.category === selectedCategory && p.isAvailable)
@@ -307,7 +307,7 @@ export const PosTerminal: React.FC = () => {
       </div>
 
       {/* 2. PANEL DE ORDEN/CART DEL POS (SECCION DERECHA) - 5 columnas */}
-      <div className="lg:col-span-5 bg-white rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-between h-full overflow-hidden">
+      <div className="lg:col-span-5 bg-white rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-between lg:h-full lg:overflow-hidden mt-6 lg:mt-0">
         
         {/* Cart Header */}
         <div className="p-4 border-b border-neutral-100 flex items-center justify-between shrink-0">
@@ -345,7 +345,7 @@ export const PosTerminal: React.FC = () => {
         </div>
 
         {/* Cart Item List */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0">
+        <div className="flex-1 lg:overflow-y-auto p-4 space-y-3 lg:min-h-0">
           {posCart.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center text-neutral-400 space-y-2">
               <Calculator className="w-8 h-8 text-neutral-300" />
