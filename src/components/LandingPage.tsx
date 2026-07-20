@@ -27,7 +27,10 @@ import {
   Award
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+// @ts-ignore
 import videoUrl from "../public/video-foodhub.mp4";
+// @ts-ignore
+import videoHeroUrl from "../public/video-hero.mp4";
 
 export const LandingPage: React.FC = () => {
   const { addWaitlistProspect, waitlist, changeUserRole } = useApp();
@@ -271,93 +274,162 @@ export const LandingPage: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 sm:pt-20 pb-16">
+      {/* Hero Video Only */}
+      <section className="relative overflow-hidden h-[100vh] flex flex-col justify-center items-center text-center -mt-[64px]">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            src={videoHeroUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-neutral-950/40 pointer-events-none"></div>
+          {/* Blend to match the body bg */}
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#FAF9F6] to-transparent pointer-events-none"></div>
+        </div>
+
+        <div className="relative z-10 w-full px-4 sm:px-6 max-w-5xl mx-auto pt-16">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-serif font-extrabold tracking-tight text-white leading-[1.05] drop-shadow-xl"
+          >
+            Revoluciona tu <span className="text-amber-400">Restaurante</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="mt-6 text-lg sm:text-xl text-neutral-200 max-w-2xl mx-auto drop-shadow-md font-medium"
+          >
+            La plataforma integral de ventas y gestión sin comisiones para el rubro gastronómico moderno.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <a href="#unete" className="mt-10 inline-flex items-center gap-2 bg-white text-neutral-950 px-6 py-3.5 rounded-xl font-display font-bold shadow-xl hover:bg-neutral-50 hover:scale-105 active:scale-95 transition-all">
+              Descubre cómo <ArrowRight className="w-4 h-4" />
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Main Content Info Section */}
+      <section id="unete" className="relative overflow-hidden pt-20 pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
             {/* Left: Headline & Key Advantages */}
-            <div className="lg:col-span-7 space-y-8 text-left">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold tracking-tight text-neutral-950 leading-[1.05]">
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 space-y-8 text-left"
+            >
+              <h2 className="text-4xl sm:text-5xl font-serif font-extrabold tracking-tight text-neutral-950 leading-[1.05]">
                 La plataforma de venta sin comisiones que tu negocio merece.
-              </h1>
+              </h2>
 
               <p className="text-neutral-600 text-base sm:text-lg max-w-2xl leading-relaxed">
                 Diseñado exclusivamente para el rubro gastronómico moderno. FoodHub integra un <strong>Hub de atención ultrarrápido</strong>, tu propio <strong>e-commerce web</strong> independiente de las apps tradicionales de delivery, y un <strong>Asistente inteligente con IA</strong> que atiende comensales por ti.
               </p>
 
-              {/* Grid of Key Features */}
+              {/* Grid of Key Features - Bento Box Style */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="flex items-start gap-3">
-                  <div className="bg-neutral-950 text-white p-1.5 rounded-lg mt-0.5">
-                    <Check className="w-4 h-4 stroke-[3]" />
+                <motion.div 
+                  whileHover={{ y: -2 }}
+                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
+                >
+                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
+                    <Check className="w-5 h-5 stroke-[2.5]" />
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-sm text-neutral-900">Punto de venta Multicanal</h4>
-                    <p className="text-xs text-neutral-500">Manejo de caja, cierres de turnos y arqueos instantáneos.</p>
+                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">Punto de venta Multicanal</h4>
+                    <p className="text-xs text-neutral-500 leading-relaxed">Manejo de caja, cierres de turnos y arqueos instantáneos con máxima fluidez.</p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start gap-3">
-                  <div className="bg-neutral-950 text-white p-1.5 rounded-lg mt-0.5">
-                    <Check className="w-4 h-4 stroke-[3]" />
+                <motion.div 
+                  whileHover={{ y: -2 }}
+                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
+                >
+                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
+                    <Check className="w-5 h-5 stroke-[2.5]" />
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-sm text-neutral-900">E-Commerce con 0% Comisión</h4>
-                    <p className="text-xs text-neutral-500">Recibe pedidos de delivery y retiro directo a tu cuenta.</p>
+                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">E-Commerce con 0% Comisión</h4>
+                    <p className="text-xs text-neutral-500 leading-relaxed">Recibe pedidos de delivery y retiro directo a tu cuenta sin cargos ocultos.</p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start gap-3">
-                  <div className="bg-neutral-950 text-white p-1.5 rounded-lg mt-0.5">
-                    <Check className="w-4 h-4 stroke-[3]" />
+                <motion.div 
+                  whileHover={{ y: -2 }}
+                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
+                >
+                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
+                    <Check className="w-5 h-5 stroke-[2.5]" />
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-sm text-neutral-900">Chat de IA Integrado</h4>
-                    <p className="text-xs text-neutral-500">Ten un vendedor disponible 24/7.</p>
+                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">Chat de IA Integrado</h4>
+                    <p className="text-xs text-neutral-500 leading-relaxed">Ten un vendedor virtual disponible 24/7 respondiendo clientes al instante.</p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="flex items-start gap-3">
-                  <div className="bg-neutral-950 text-white p-1.5 rounded-lg mt-0.5">
-                    <Check className="w-4 h-4 stroke-[3]" />
+                <motion.div 
+                  whileHover={{ y: -2 }}
+                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
+                >
+                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
+                    <Check className="w-5 h-5 stroke-[2.5]" />
                   </div>
                   <div>
-                    <h4 className="font-serif font-bold text-sm text-neutral-900">Configuración en 10 Minutos</h4>
-                    <p className="text-xs text-neutral-500">Carga de menú por lotes e integración local sin fricciones.</p>
+                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">Configuración en Minutos</h4>
+                    <p className="text-xs text-neutral-500 leading-relaxed">Carga de menú por lotes e integración rápida para empezar a vender hoy.</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* Social Proof */}
               <div className="pt-4 flex items-center gap-6 border-t border-neutral-200">
                 <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-neutral-900 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white">M</div>
-                  <div className="w-8 h-8 rounded-full bg-neutral-700 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white">A</div>
-                  <div className="w-8 h-8 rounded-full bg-neutral-500 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white">S</div>
+                  <div className="w-8 h-8 rounded-full bg-neutral-900 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm">M</div>
+                  <div className="w-8 h-8 rounded-full bg-neutral-700 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm">A</div>
+                  <div className="w-8 h-8 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm">S</div>
                 </div>
                 <div>
                   <div className="flex items-center gap-1 text-amber-500">
                     {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-500" />)}
                   </div>
-                  <p className="text-xs text-neutral-500">Más de 100 negocios ya se inscribieron en la lista de espera.</p>
+                  <p className="text-xs text-neutral-500 font-medium">Más de 100 negocios ya confían en nosotros.</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Right: High-fidelity Premium Sign-up Card */}
-            <div id="waitlist-form-card" className="lg:col-span-5">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="bg-white border border-neutral-200 p-6 sm:p-8 rounded-3xl shadow-xl shadow-neutral-900/5 relative overflow-hidden"
-              >
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              id="waitlist-form-card" 
+              className="lg:col-span-5 relative"
+            >
+              {/* Premium Glow Behind the Card */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-amber-400/20 via-transparent to-neutral-900/10 rounded-[2rem] blur-lg"></div>
+              
+              <div className="bg-white/95 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-2xl shadow-neutral-900/5 relative overflow-hidden">
                 {/* Visual accent top line - Sleek black line */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-neutral-950"></div>
+                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-950"></div>
 
                 {!isSuccess ? (
-                  <form onSubmit={handleSubmit} className="space-y-4">
+                  <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-1 pb-2">
                       <h3 className="text-2xl font-serif font-black text-neutral-900 tracking-tight flex items-center gap-2">
                         <Rocket className="text-neutral-950 w-5 h-5" />
@@ -369,65 +441,65 @@ export const LandingPage: React.FC = () => {
                     </div>
 
                     {/* Local Business Name */}
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Nombre de tu Restaurante</label>
-                      <div className="relative">
-                        <Building className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400" />
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Nombre de tu Restaurante</label>
+                      <div className="relative group">
+                        <Building className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                         <input
                           type="text"
                           required
                           value={businessName}
                           onChange={(e) => setBusinessName(e.target.value)}
                           placeholder="Ej. Burguesería San Telmo"
-                          className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
+                          className="w-full bg-white border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
                         />
                       </div>
                     </div>
 
                     {/* Contact Owner */}
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Nombre del Propietario</label>
-                      <div className="relative">
-                        <UserIcon className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400" />
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Nombre del Propietario</label>
+                      <div className="relative group">
+                        <UserIcon className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                         <input
                           type="text"
                           required
                           value={ownerName}
                           onChange={(e) => setOwnerName(e.target.value)}
                           placeholder="Ej. Sofía Mendoza"
-                          className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
+                          className="w-full bg-white border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
                         />
                       </div>
                     </div>
 
                     {/* Email & Phone Rows */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">E-mail Corporativo</label>
-                        <div className="relative">
-                          <Mail className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">E-mail Corporativo</label>
+                        <div className="relative group">
+                          <Mail className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                           <input
                             type="email"
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="sofia@negocio.com"
-                            className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
+                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
                           />
                         </div>
                       </div>
 
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Teléfono Móvil</label>
-                        <div className="relative">
-                          <Phone className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Teléfono Móvil</label>
+                        <div className="relative group">
+                          <Phone className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                           <input
                             type="tel"
                             required
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             placeholder="+56 9 8765 4321"
-                            className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-1 focus:ring-neutral-950 focus:bg-white transition-all"
+                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
                           />
                         </div>
                       </div>
@@ -435,14 +507,14 @@ export const LandingPage: React.FC = () => {
 
                     {/* Rubro & Volumen Selectors */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Rubro Principal</label>
-                        <div className="relative">
-                          <Utensils className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Rubro Principal</label>
+                        <div className="relative group">
+                          <Utensils className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                           <select
                             value={restaurantType}
                             onChange={(e) => setRestaurantType(e.target.value)}
-                            className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:bg-white cursor-pointer transition-all appearance-none"
+                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 cursor-pointer transition-all appearance-none shadow-sm"
                           >
                             <option value="Hamburguesería">Hamburguesería</option>
                             <option value="Cafetería">Cafetería</option>
@@ -455,14 +527,14 @@ export const LandingPage: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500">Pedidos Mensuales</label>
-                        <div className="relative">
-                          <TrendingUp className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400" />
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Pedidos Mensuales</label>
+                        <div className="relative group">
+                          <TrendingUp className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                           <select
                             value={monthlyOrders}
                             onChange={(e) => setMonthlyOrders(e.target.value)}
-                            className="w-full bg-neutral-50 border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:bg-white cursor-pointer transition-all appearance-none"
+                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 cursor-pointer transition-all appearance-none shadow-sm"
                           >
                             <option value="Menos de 200">Menos de 200</option>
                             <option value="200 - 500">200 - 500</option>
@@ -478,7 +550,7 @@ export const LandingPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-neutral-950 hover:bg-neutral-900 text-white font-display font-bold py-3.5 rounded-xl transition-all hover:shadow-lg hover:shadow-neutral-950/10 active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer mt-4"
+                      className="w-full bg-neutral-950 hover:bg-neutral-900 text-white font-display font-bold py-3.5 rounded-xl transition-all hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer mt-6"
                     >
                       {isSubmitting ? (
                         <>
@@ -493,7 +565,7 @@ export const LandingPage: React.FC = () => {
                       )}
                     </button>
 
-                    <p className="text-[10px] text-center text-neutral-400">
+                    <p className="text-[10px] text-center text-neutral-400 pt-2">
                       Sin compromisos financieros. Tu tarifa plana de lanzamiento garantizada.
                     </p>
                   </form>
@@ -545,8 +617,8 @@ export const LandingPage: React.FC = () => {
                     </div>
                   </motion.div>
                 )}
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
 
           </div>
         </div>
