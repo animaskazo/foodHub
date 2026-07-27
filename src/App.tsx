@@ -1,5 +1,5 @@
 import React from "react";
-import { Analytics } from "@vercel/analytics/react";
+
 import { AppProvider, useApp } from "./context/AppContext";
 import { AdminDashboard } from "./components/AdminDashboard";
 import { PosTerminal } from "./components/PosTerminal";
@@ -44,7 +44,7 @@ export default function App() {
   return (
     <AppProvider>
       <AppContent />
-      <Analytics />
+
     </AppProvider>
   );
 }
