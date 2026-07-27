@@ -19,8 +19,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     if (process.env.RESEND_API_KEY) {
+      console.log("Nueva solicitud recibida:", req.body);
       const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
+      const { data, error } = await resend.emails.send({
         from: 'FoodHub <food@digital-solutions.work>',
         to: email,
         bcc: 'hola@digital-solutions.work',
@@ -79,11 +80,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           </html>
         `
       });
+
+      if (error) {
+        console.error("Error devuelto por Resend:", error);
+        return res.status(500).json({ error: "No se pudo enviar el correo: " + error.message });
+      }
+      
+      console.log("Correo enviado exitosamente. ID de Resend:", data?.id);
     } else {
       console.warn("WARNING: RESEND_API_KEY is not defined. Email was not sent.");
     }
 
-    return res.status(200).json({ success: true });
+    return res.status(200).json({ success: true, message: "Suscripción exitosa" });
   } catch (error: any) {
     console.error("Resend API Error:", error);
     return res.status(500).json({ error: error.message || "Error al enviar el correo." });

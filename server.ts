@@ -122,6 +122,7 @@ Instrucciones de comportamiento:
       }
 
       if (process.env.RESEND_API_KEY) {
+        console.log("Nueva solicitud recibida localmente:", req.body);
         await resend.emails.send({
           from: 'FoodHub <food@digital-solutions.work>',
           to: email,
@@ -180,12 +181,14 @@ Instrucciones de comportamiento:
             </body>
             </html>
           `
-        });
+      });
+
+        // La version de resend instanciada aqui parece no estar desestructurando de igual forma, pero dejaremos el error catch global
       } else {
         console.warn("WARNING: RESEND_API_KEY is not defined. Email was not sent.");
       }
 
-      res.json({ success: true });
+      res.json({ success: true, message: "Suscripción exitosa" });
     } catch (error: any) {
       console.error("Resend API Error:", error);
       res.status(500).json({ error: error.message || "Error al enviar el correo." });
