@@ -38,6 +38,7 @@ const DEFAULT_WAITLIST: WaitlistItem[] = [
     phone: "+56 9 8765 4321",
     restaurantType: "Cafetería",
     monthlyOrders: "500 - 1000",
+    selectedPlan: "base",
     status: "pending",
     timestamp: new Date(Date.now() - 36 * 60 * 60 * 1000).toISOString()
   },
@@ -49,6 +50,7 @@ const DEFAULT_WAITLIST: WaitlistItem[] = [
     phone: "+56 9 1234 5678",
     restaurantType: "Hamburguesería / Bar",
     monthlyOrders: "1000 - 2500",
+    selectedPlan: "premium",
     status: "contacted",
     timestamp: new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString()
   },
@@ -60,6 +62,7 @@ const DEFAULT_WAITLIST: WaitlistItem[] = [
     phone: "+56 9 5555 1234",
     restaurantType: "Pizzería",
     monthlyOrders: "2500+",
+    selectedPlan: "base",
     status: "pending",
     timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000).toISOString()
   }
@@ -139,6 +142,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const addWaitlistProspect = (prospect: Omit<WaitlistItem, "id" | "status" | "timestamp">) => {
     const newItem: WaitlistItem = {
       ...prospect,
+      selectedPlan: prospect.selectedPlan || "base",
       id: "wait-" + Date.now(),
       status: "pending",
       timestamp: new Date().toISOString()

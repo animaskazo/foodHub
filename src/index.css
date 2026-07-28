@@ -49,3 +49,15 @@
   scrollbar-width: none;
 }
 
+/* Global focus-visible for keyboard accessibility */
+*:focus-visible {
+  outline: 2px solid #262626;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth scroll for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+

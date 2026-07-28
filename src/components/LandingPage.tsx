@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useApp } from "../context/AppContext";
 import {
   Rocket,
   Terminal,
   ShoppingBag,
   Sparkles,
+  Crown,
+  MessageCircle,
   ArrowRight,
   CheckCircle,
   TrendingUp,
@@ -44,6 +46,7 @@ export const LandingPage: React.FC = () => {
   const [restaurantType, setRestaurantType] = useState("Hamburguesería");
   const [monthlyOrders, setMonthlyOrders] = useState("500 - 1000");
 
+  const [selectedPlan, setSelectedPlan] = useState<string>("base");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [assignedQueue, setAssignedQueue] = useState(128);
@@ -73,6 +76,19 @@ export const LandingPage: React.FC = () => {
   // FAQ state
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
+  // Billing toggle
+  const [annualBilling, setAnnualBilling] = useState(false);
+
+  // Back to top visibility
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Scroll listener for back-to-top
+  useEffect(() => {
+    const handleScroll = () => setShowBackToTop(window.scrollY > 600);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!businessName || !ownerName || !email || !phone) return;
@@ -91,7 +107,8 @@ export const LandingPage: React.FC = () => {
           email,
           phone,
           restaurantType,
-          monthlyOrders
+          monthlyOrders,
+          selectedPlan
         })
       });
     } catch (error) {
@@ -105,7 +122,8 @@ export const LandingPage: React.FC = () => {
       email,
       phone,
       restaurantType,
-      monthlyOrders
+      monthlyOrders,
+      selectedPlan: selectedPlan as "base" | "premium"
     });
 
     setIsSubmitting(false);
@@ -185,23 +203,34 @@ export const LandingPage: React.FC = () => {
         </span>
       </div>
 
+      {/* Skip to main content link */}
+      <a
+        href="#main-content"
+        className="fixed -top-20 left-4 z-[100] bg-neutral-950 text-white px-4 py-2 rounded-b-xl text-xs font-bold transition-all focus:top-0 focus:outline-2 focus:outline-white"
+      >
+        Ir al contenido principal
+      </a>
+
       {/* Elegant Header Navigation */}
       <header className="border-b border-neutral-200/80 bg-white/80 backdrop-blur-md sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="bg-neutral-950 text-white p-2 rounded-xl shadow-sm">
+            <div className="bg-neutral-950 text-white p-2 rounded-xl shadow-sm" aria-hidden="true">
               <Utensils className="w-5 h-5" />
             </div>
             <span className="font-display font-extrabold text-xl tracking-tight text-neutral-950">foodhub</span>
             <span className="bg-neutral-100 border border-neutral-200 text-neutral-800 px-2 py-0.5 rounded-full text-[10px] font-bold font-mono">SAAS</span>
           </div>
 
-          <div className="hidden md:flex items-center gap-4 lg:gap-6 text-xs lg:text-sm font-medium text-neutral-600">
-            <a href="#solucion-integrada" className="hover:text-neutral-950 transition-colors">Características</a>
-            <a href="#simulador" className="hover:text-neutral-950 transition-colors">Simulador</a>
-            <a href="#calculadora" className="hover:text-neutral-950 transition-colors">Calculadora</a>
-            <a href="#faq" className="hover:text-neutral-950 transition-colors">FAQ</a>
-          </div>
+          <nav aria-label="Navegación principal">
+            <div className="hidden md:flex items-center gap-4 lg:gap-6 text-xs lg:text-sm font-medium text-neutral-600">
+              <a href="#solucion-integrada" className="hover:text-neutral-950 transition-colors">Características</a>
+              <a href="#planes" className="hover:text-neutral-950 transition-colors">Planes</a>
+              <a href="#simulador" className="hover:text-neutral-950 transition-colors">Simulador</a>
+              <a href="#calculadora" className="hover:text-neutral-950 transition-colors">Calculadora</a>
+              <a href="#faq" className="hover:text-neutral-950 transition-colors">FAQ</a>
+            </div>
+          </nav>
 
           <div className="flex items-center gap-3 relative">
 
@@ -217,7 +246,7 @@ export const LandingPage: React.FC = () => {
       </header>
 
       {/* Hero Video Only */}
-      <section className="relative overflow-hidden h-[100vh] flex flex-col justify-center items-center text-center -mt-[64px]">
+      <section id="main-content" className="relative overflow-hidden h-[100vh] flex flex-col justify-center items-center text-center -mt-[64px]">
         {/* Video Background */}
         <div className="absolute inset-0 z-0">
           <video
@@ -226,6 +255,8 @@ export const LandingPage: React.FC = () => {
             loop
             muted
             playsInline
+            title="Video de fondo FoodHub"
+            aria-hidden="true"
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-neutral-950/40 pointer-events-none"></div>
@@ -340,10 +371,10 @@ export const LandingPage: React.FC = () => {
 
               {/* Social Proof */}
               <div className="pt-4 flex items-center gap-6 border-t border-neutral-200">
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-neutral-900 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm">M</div>
-                  <div className="w-8 h-8 rounded-full bg-neutral-700 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm">A</div>
-                  <div className="w-8 h-8 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm">S</div>
+                <div className="flex -space-x-2" aria-label="Clientes destacados" role="img">
+                  <div className="w-8 h-8 rounded-full bg-neutral-900 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm" aria-label="María">M</div>
+                  <div className="w-8 h-8 rounded-full bg-neutral-700 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm" aria-label="Andrés">A</div>
+                  <div className="w-8 h-8 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm" aria-label="Sofía">S</div>
                 </div>
                 <div>
                   <div className="flex items-center gap-1 text-amber-500">
@@ -385,8 +416,8 @@ export const LandingPage: React.FC = () => {
                     {/* Local Business Name */}
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Nombre de tu Restaurante</label>
-                      <div className="relative group">
-                        <Building className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                  <div className="relative group">
+                    <Building aria-hidden="true" className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                         <input
                           type="text"
                           required
@@ -485,6 +516,41 @@ export const LandingPage: React.FC = () => {
                             <option value="2500+">Más de 2500</option>
                           </select>
                         </div>
+                      </div>
+                    </div>
+
+                    {/* Plan Selection */}
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Plan de Interés</label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedPlan("base")}
+                          className={`flex items-center gap-2 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${selectedPlan === "base"
+                            ? "bg-neutral-950 text-white border-neutral-950 shadow-sm"
+                            : "bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400"
+                            }`}
+                        >
+                          <Terminal className="w-4 h-4" />
+                          <div className="text-left">
+                            <span className="block">Base</span>
+                            <span className={`font-mono ${selectedPlan === "base" ? "text-white/80" : "text-neutral-400"}`}>$14.900/mes</span>
+                          </div>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedPlan("premium")}
+                          className={`flex items-center gap-2 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${selectedPlan === "premium"
+                            ? "bg-neutral-950 text-white border-neutral-950 shadow-sm"
+                            : "bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400"
+                            }`}
+                        >
+                          <Crown className="w-4 h-4" />
+                          <div className="text-left">
+                            <span className="block">Premium</span>
+                            <span className={`font-mono ${selectedPlan === "premium" ? "text-white/80" : "text-neutral-400"}`}>$24.900/mes</span>
+                          </div>
+                        </button>
                       </div>
                     </div>
 
@@ -590,6 +656,7 @@ export const LandingPage: React.FC = () => {
               loop
               muted
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover aspect-video"
             />
             {/* Ambient light overlay on hover */}
@@ -629,18 +696,22 @@ export const LandingPage: React.FC = () => {
 
           {/* Left: Tab Selectors */}
           <div className="lg:col-span-4 border-r border-neutral-200 bg-neutral-50/50 p-6 flex flex-col justify-between">
-            <div className="space-y-2">
+            <div className="space-y-2" role="tablist" aria-label="Módulos del simulador">
               <h3 className="font-bold text-neutral-400 text-xs mb-4 uppercase tracking-wider font-mono">Selecciona un Módulo</h3>
 
               {/* Tab 1: POS */}
               <button
+                role="tab"
+                aria-selected={activeSimTab === "pos"}
+                aria-controls="sim-panel-pos"
+                id="sim-tab-pos"
                 onClick={() => setActiveSimTab("pos")}
                 className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "pos"
                   ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
                   : "border-transparent hover:bg-neutral-100 text-neutral-500"
                   }`}
               >
-                <div className={`p-2.5 rounded-xl ${activeSimTab === "pos" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`}>
+                <div className={`p-2.5 rounded-xl ${activeSimTab === "pos" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`} aria-hidden="true">
                   <Terminal className="w-5 h-5" />
                 </div>
                 <div>
@@ -651,13 +722,17 @@ export const LandingPage: React.FC = () => {
 
               {/* Tab 2: Store */}
               <button
+                role="tab"
+                aria-selected={activeSimTab === "store"}
+                aria-controls="sim-panel-store"
+                id="sim-tab-store"
                 onClick={() => setActiveSimTab("store")}
                 className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "store"
                   ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
                   : "border-transparent hover:bg-neutral-100 text-neutral-500"
                   }`}
               >
-                <div className={`p-2.5 rounded-xl ${activeSimTab === "store" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`}>
+                <div className={`p-2.5 rounded-xl ${activeSimTab === "store" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`} aria-hidden="true">
                   <ShoppingBag className="w-5 h-5" />
                 </div>
                 <div>
@@ -668,13 +743,17 @@ export const LandingPage: React.FC = () => {
 
               {/* Tab 3: AI Assistant */}
               <button
+                role="tab"
+                aria-selected={activeSimTab === "ai"}
+                aria-controls="sim-panel-ai"
+                id="sim-tab-ai"
                 onClick={() => setActiveSimTab("ai")}
                 className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "ai"
                   ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
                   : "border-transparent hover:bg-neutral-100 text-neutral-500"
                   }`}
               >
-                <div className={`p-2.5 rounded-xl ${activeSimTab === "ai" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`}>
+                <div className={`p-2.5 rounded-xl ${activeSimTab === "ai" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`} aria-hidden="true">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
@@ -710,7 +789,7 @@ export const LandingPage: React.FC = () => {
 
                 {/* 1. POS TERMINAL SCREEN */}
                 {activeSimTab === "pos" && (
-                  <div className="h-full flex flex-col justify-between space-y-3">
+                  <div id="sim-panel-pos" role="tabpanel" aria-labelledby="sim-tab-pos" className="h-full flex flex-col justify-between space-y-3">
                     <div className="space-y-2">
                       <div className="flex justify-between items-center border-b border-neutral-100 pb-2">
                         <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide font-display">Caja Registradora #1</span>
@@ -792,7 +871,7 @@ export const LandingPage: React.FC = () => {
 
                 {/* 2. ONLINE STORE SCREEN */}
                 {activeSimTab === "store" && (
-                  <div className="h-full flex flex-col justify-between space-y-3 animate-scale-up">
+                  <div id="sim-panel-store" role="tabpanel" aria-labelledby="sim-tab-store" className="h-full flex flex-col justify-between space-y-3 animate-scale-up">
                     <div className="space-y-2">
                       <div className="flex justify-between items-center bg-neutral-50 border border-neutral-200 px-3 py-1 rounded-xl">
                         <span className="text-[10px] text-neutral-500 truncate max-w-[200px] font-mono">tu-local.foodhub.cl</span>
@@ -860,7 +939,7 @@ export const LandingPage: React.FC = () => {
 
                 {/* 3. AI CHATBOT SCREEN */}
                 {activeSimTab === "ai" && (
-                  <div className="h-full flex flex-col justify-between space-y-2 animate-scale-up">
+                  <div id="sim-panel-ai" role="tabpanel" aria-labelledby="sim-tab-ai" className="h-full flex flex-col justify-between space-y-2 animate-scale-up">
                     <div className="flex-1 bg-neutral-50 border border-neutral-200 rounded-xl p-3 flex flex-col space-y-2 overflow-y-auto max-h-[220px] text-xs shadow-inner">
                       {aiChat.map((msg, i) => (
                         <div key={i} className={`p-2.5 rounded-2xl max-w-[85%] leading-tight ${msg.sender === "ai"
@@ -1072,6 +1151,183 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
+      {/* Pricing Plans Section */}
+      <section id="planes" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
+          <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest font-mono">PRECIOS</span>
+          <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-neutral-950 tracking-tight">
+            Planes diseñados para tu negocio
+          </h2>
+          <p className="text-neutral-500 text-sm">
+            Sin comisiones por venta. Todo el ecosistema FoodHub con una tarifa plana mensual.
+          </p>
+
+          {/* Billing Toggle */}
+          <div className="flex items-center justify-center gap-3 pt-4">
+            <span className={`text-xs font-bold transition-colors ${!annualBilling ? "text-neutral-950" : "text-neutral-400"}`}>
+              Mensual
+            </span>
+            <button
+              onClick={() => setAnnualBilling(!annualBilling)}
+              aria-label={annualBilling ? "Cambiar a facturación mensual" : "Cambiar a facturación anual"}
+              className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors cursor-pointer ${annualBilling ? "bg-neutral-950" : "bg-neutral-300"}`}
+            >
+              <span
+                className={`inline-block h-5 w-5 transform rounded-full bg-white shadow-sm transition-transform ${annualBilling ? "translate-x-6" : "translate-x-1"}`}
+              />
+            </button>
+            <span className={`text-xs font-bold transition-colors ${annualBilling ? "text-neutral-950" : "text-neutral-400"}`}>
+              Anual
+            </span>
+            {annualBilling && (
+              <motion.span
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full font-mono tracking-wider border border-emerald-200"
+              >
+                Ahorra 2 meses
+              </motion.span>
+            )}
+          </div>
+        </div>
+
+        <div className="relative max-w-3xl mx-auto">
+          {/* Ambient glow behind premium card */}
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-72 h-72 bg-neutral-950/5 blur-[100px] rounded-full pointer-events-none hidden md:block"></div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+            {/* Base Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5 }}
+              className="bg-white border border-neutral-200 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all relative flex flex-col group"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <div className="bg-neutral-100 text-neutral-950 p-2 rounded-xl group-hover:bg-neutral-950 group-hover:text-white transition-colors">
+                    <Terminal className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider font-mono">Plan Base</span>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-neutral-950 font-mono">
+                      {annualBilling ? "$12.650" : "$14.900"}
+                    </span>
+                    <span className="text-neutral-400 text-sm font-medium">/mes</span>
+                  </div>
+                  {annualBilling && (
+                    <p className="text-[10px] text-emerald-600 font-bold font-mono">$151.800 año — 2 meses gratis</p>
+                  )}
+                  <p className="text-xs text-neutral-500">Tarifa plana sin comisiones por venta.</p>
+                </div>
+              </div>
+
+              <ul className="space-y-3 my-6 flex-1">
+                {[
+                  { icon: Terminal, text: "POS terminal con arqueo de caja" },
+                  { icon: ShoppingBag, text: "Tienda online con dominio propio" },
+                  { icon: Sparkles, text: "Chat asistente IA (Gemini)" },
+                  { icon: Smartphone, text: "Menú digital sincronizado" },
+                  { icon: Zap, text: "Comandas directas a cocina" },
+                  { icon: HeartHandshake, text: "Soporte técnico prioritario" },
+                  { icon: Check, text: "Actualizaciones gratuitas" }
+                ].map((feature, i) => {
+                  const Icon = feature.icon;
+                  return (
+                    <li key={i} className="flex items-start gap-3 text-xs text-neutral-700">
+                      <Icon className="w-4 h-4 text-neutral-950 shrink-0 mt-0.5" />
+                      <span>{feature.text}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <a
+                href="#waitlist-form-card"
+                onClick={() => setSelectedPlan("base")}
+                className="w-full bg-neutral-950 hover:bg-neutral-800 text-white font-display font-bold py-3.5 rounded-xl text-xs transition-all hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"
+              >
+                <span>Comenzar gratis</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <p className="text-[10px] text-neutral-400 text-center pt-3">14 días gratis. Sin tarjeta.</p>
+            </motion.div>
+
+            {/* Premium Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="bg-white border-2 border-neutral-950 rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all relative flex flex-col group"
+            >
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-neutral-950 text-white text-[10px] font-bold px-4 py-1 rounded-full font-mono tracking-wider flex items-center gap-1.5 shadow-lg animate-pulse">
+                <Crown className="w-3.5 h-3.5" />
+                <span>Más Popular</span>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <div className="bg-neutral-950 text-white p-2 rounded-xl group-hover:bg-neutral-800 transition-colors">
+                    <Crown className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider font-mono">Plan Premium</span>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-neutral-950 font-mono">
+                      {annualBilling ? "$21.165" : "$24.900"}
+                    </span>
+                    <span className="text-neutral-400 text-sm font-medium">/mes</span>
+                  </div>
+                  {annualBilling && (
+                    <p className="text-[10px] text-emerald-600 font-bold font-mono">$253.980 año — 2 meses gratis</p>
+                  )}
+                  <p className="text-xs text-neutral-500">Todo lo del Plan Base, más integración WhatsApp.</p>
+                </div>
+              </div>
+
+              <ul className="space-y-3 my-6 flex-1">
+                <li className="flex items-start gap-3 text-xs text-neutral-700 pb-2 border-b border-neutral-100">
+                  <Check className="w-4 h-4 text-neutral-950 shrink-0 mt-0.5" />
+                  <span className="font-semibold">Todo lo del Plan Base</span>
+                </li>
+                {[
+                  "Integración WhatsApp Business API",
+                  "Catálogo interactivo en WhatsApp",
+                  "Notificaciones automáticas a clientes",
+                  "Recepción de pedidos por WhatsApp",
+                  "Ventas directas sin comisiones por chat",
+                  "Soporte técnico premium 24/7"
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-xs text-neutral-700">
+                    <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#waitlist-form-card"
+                onClick={() => setSelectedPlan("premium")}
+                className="w-full bg-neutral-950 hover:bg-neutral-800 text-white font-display font-bold py-3.5 rounded-xl text-xs transition-all hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2 shadow-lg"
+              >
+                <span>Elegir Premium</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <p className="text-[10px] text-neutral-400 text-center pt-3">14 días gratis. Sin tarjeta. Cancela cuando quieras.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Elegant Accordion FAQ Section */}
       <section id="faq" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center space-y-3 mb-10">
@@ -1086,7 +1342,10 @@ export const LandingPage: React.FC = () => {
               className="bg-white border border-neutral-200 rounded-2xl overflow-hidden transition-all shadow-sm hover:shadow-md"
             >
               <button
+                id={`faq-btn-${idx}`}
                 onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                aria-expanded={openFaqIndex === idx}
+                aria-controls={`faq-panel-${idx}`}
                 className="w-full text-left p-5 font-bold text-neutral-800 flex justify-between items-center cursor-pointer hover:bg-neutral-50/50 transition-colors text-sm sm:text-base font-serif"
               >
                 <span>{faq.q}</span>
@@ -1102,7 +1361,7 @@ export const LandingPage: React.FC = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-neutral-500 border-t border-neutral-100 leading-relaxed bg-neutral-50/10">
+                    <div id={`faq-panel-${idx}`} role="region" aria-labelledby={`faq-btn-${idx}`} className="px-5 pb-5 pt-1 text-xs sm:text-sm text-neutral-500 border-t border-neutral-100 leading-relaxed bg-neutral-50/10">
                       {faq.a}
                     </div>
                   </motion.div>
@@ -1140,6 +1399,17 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
+      {/* Back to top button */}
+      <motion.button
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: showBackToTop ? 1 : 0, scale: showBackToTop ? 1 : 0.8 }}
+        className="fixed bottom-6 right-6 z-50 bg-neutral-950 text-white p-3.5 rounded-2xl shadow-xl hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+        aria-label="Volver arriba"
+      >
+        <ChevronDown className="w-5 h-5 rotate-180" />
+      </motion.button>
+
       {/* Footer */}
       <footer className="border-t border-neutral-200/80 bg-[#FAF9F6] py-10 mt-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">

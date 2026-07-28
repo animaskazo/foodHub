@@ -37,6 +37,7 @@ export interface WaitlistItem {
   phone: string;
   restaurantType: string;
   monthlyOrders: string;
+  selectedPlan: "base" | "premium";
   status: "pending" | "contacted" | "rejected";
   timestamp: string;
 }
