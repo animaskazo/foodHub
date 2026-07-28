@@ -265,7 +265,7 @@ export const LandingPage: React.FC = () => {
         </div>
 
         <div className="relative z-10 w-full px-4 sm:px-6 max-w-5xl mx-auto pt-16">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -273,7 +273,7 @@ export const LandingPage: React.FC = () => {
           >
             Revoluciona tu <span className="text-amber-400">Restaurante</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -299,7 +299,7 @@ export const LandingPage: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
             {/* Left: Headline & Key Advantages */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -316,7 +316,7 @@ export const LandingPage: React.FC = () => {
 
               {/* Grid of Key Features - Bento Box Style */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <motion.div 
+                <motion.div
                   whileHover={{ y: -2 }}
                   className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
                 >
@@ -329,7 +329,7 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   whileHover={{ y: -2 }}
                   className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
                 >
@@ -342,7 +342,7 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   whileHover={{ y: -2 }}
                   className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
                 >
@@ -355,7 +355,7 @@ export const LandingPage: React.FC = () => {
                   </div>
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                   whileHover={{ y: -2 }}
                   className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
                 >
@@ -386,17 +386,17 @@ export const LandingPage: React.FC = () => {
             </motion.div>
 
             {/* Right: High-fidelity Premium Sign-up Card */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              id="waitlist-form-card" 
+              id="waitlist-form-card"
               className="lg:col-span-5 relative"
             >
               {/* Premium Glow Behind the Card */}
               <div className="absolute -inset-1 bg-gradient-to-br from-amber-400/20 via-transparent to-neutral-900/10 rounded-[2rem] blur-lg"></div>
-              
+
               <div className="bg-white/95 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-2xl shadow-neutral-900/5 relative overflow-hidden">
                 {/* Visual accent top line - Sleek black line */}
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-950"></div>
@@ -416,8 +416,8 @@ export const LandingPage: React.FC = () => {
                     {/* Local Business Name */}
                     <div className="space-y-1.5">
                       <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Nombre de tu Restaurante</label>
-                  <div className="relative group">
-                    <Building aria-hidden="true" className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                      <div className="relative group">
+                        <Building aria-hidden="true" className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
                         <input
                           type="text"
                           required
@@ -1300,10 +1300,10 @@ export const LandingPage: React.FC = () => {
                 </li>
                 {[
                   "Integración WhatsApp Business API",
-                  "Catálogo interactivo en WhatsApp",
                   "Notificaciones automáticas a clientes",
                   "Recepción de pedidos por WhatsApp",
                   "Ventas directas sin comisiones por chat",
+                  "Validacion de delivery por conversacion",
                   "Soporte técnico premium 24/7"
                 ].map((feature, i) => (
                   <li key={i} className="flex items-start gap-3 text-xs text-neutral-700">
@@ -1420,18 +1420,18 @@ export const LandingPage: React.FC = () => {
             <span className="font-display font-extrabold text-lg tracking-tight text-neutral-950">foodhub</span>
             <span className="text-xs text-neutral-400 font-mono ml-2">© {new Date().getFullYear()}</span>
           </div>
-          
+
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-sm font-medium">
-            <a 
-              href="mailto:hola@digital-solutions.work" 
+            <a
+              href="mailto:hola@digital-solutions.work"
               className="flex items-center gap-2 text-neutral-500 hover:text-neutral-950 transition-colors"
             >
               <Mail className="w-4 h-4" />
               <span>hola@digital-solutions.work</span>
             </a>
-            <a 
-              href="https://wa.me/56995355996" 
-              target="_blank" 
+            <a
+              href="https://wa.me/56995355996"
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-neutral-500 hover:text-[#25D366] transition-colors"
             >
