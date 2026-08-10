@@ -293,7 +293,7 @@ export const LandingPage: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.05 }}
               className="text-[44px] sm:text-[56px] lg:text-[72px] font-bold tracking-tight text-white leading-[1.05]"
             >
-              Deja de pagar comisiones abusivas.
+              Vende más. <br className="hidden sm:block" /> Automatiza todo.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -301,7 +301,7 @@ export const LandingPage: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.12 }}
               className="mt-6 text-[17px] sm:text-[20px] text-white/60 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal"
             >
-              Recupera hasta un 30% de tus ganancias con nuestro ecosistema de ventas y gestión de tarifa plana. Tu esfuerzo, tus ganancias.
+              Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, sin comisiones ocultas.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
