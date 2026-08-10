@@ -26,7 +26,19 @@ import {
   DollarSign,
   Star,
   Users,
-  Award
+  Award,
+  Store,
+  Bot,
+  BellRing,
+  Send,
+  MessageSquare,
+  Headset,
+  CheckCheck,
+  LayoutGrid,
+  ClipboardList,
+  Receipt,
+  UserCircle,
+  Coins
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 // @ts-ignore
@@ -200,8 +212,9 @@ export const LandingPage: React.FC = () => {
       {/* Top Banner */}
       <div className="bg-[#1d1d1f] text-white text-center py-2.5 px-4">
         <span className="inline-flex items-center gap-2 text-[13px] font-medium tracking-[-0.01em]">
-          Ahorra más del 25% de comisiones mensuales migrando a FoodHub.
-          <a href="#planes" className="underline underline-offset-2 text-white/70 hover:text-white transition-colors">Ver planes →</a>
+          <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wide">Últimos cupos</span>
+          Asegura tu tarifa plana de por vida antes del lanzamiento oficial.
+          <a href="#waitlist-form-card" className="underline underline-offset-2 text-white/70 hover:text-white transition-colors">Reservar cupo →</a>
         </span>
       </div>
 
@@ -246,60 +259,64 @@ export const LandingPage: React.FC = () => {
       </header>
 
       {/* Hero */}
-      <section id="main-content" className="relative overflow-hidden h-[100vh] flex flex-col justify-center items-center text-center -mt-[52px]">
-        <div className="absolute inset-0 z-0">
+      <section id="main-content" className="relative min-h-[100vh] bg-[#111111] overflow-hidden flex flex-col-reverse lg:flex-row items-stretch -mt-[52px]">
+        
+        {/* Left: Video */}
+        <div className="w-full lg:w-[40%] h-[60vh] lg:min-h-[100vh] relative flex-shrink-0">
           <video
             src={videoHeroUrl}
             autoPlay
             loop
             muted
             playsInline
-            title="Video de fondo FoodHub"
-            aria-hidden="true"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
-          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f5f5f7] to-transparent pointer-events-none"></div>
+          {/* Gradient to blend video with background */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/20 to-transparent pointer-events-none z-10 lg:hidden"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#111111]/20 to-[#111111] pointer-events-none z-10 hidden lg:block"></div>
         </div>
 
-        <div className="relative z-10 w-full px-4 sm:px-6 max-w-4xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-white/60 text-[13px] font-medium tracking-[0.05em] uppercase mb-5"
-          >
-            FoodHub — La plataforma SaaS gastronómica
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.05 }}
-            className="text-[52px] sm:text-[68px] lg:text-[80px] font-bold tracking-[-0.04em] text-white leading-[1.02]"
-          >
-            Vende sin intermediarios.
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.12 }}
-            className="mt-5 text-[17px] sm:text-[19px] text-white/70 max-w-2xl mx-auto leading-relaxed font-normal tracking-[-0.01em]"
-          >
-            La plataforma integral de ventas y gestión sin comisiones para el rubro gastronómico moderno.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-10 flex items-center justify-center gap-4"
-          >
-            <a href="#unete" className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white text-[#1d1d1f] hover:bg-white/90">
-              Comenzar ahora <ArrowRight className="w-4 h-4" />
-            </a>
-            <a href="#funciones-clave" className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white/10 text-white hover:bg-white/20">
-              Ver funciones
-            </a>
-          </motion.div>
+        {/* Right: Text Content */}
+        <div className="w-full lg:w-[60%] flex items-center lg:pl-12 xl:pl-20 2xl:pl-24">
+          <div className="w-full max-w-3xl px-6 sm:px-12 lg:px-0 py-20 lg:py-32 z-10 text-center lg:text-left mx-auto lg:mx-0">
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-white/50 text-[13px] font-semibold tracking-[0.05em] uppercase mb-4 sm:mb-5"
+            >
+              Plataforma SaaS Gastronómica
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05 }}
+              className="text-[44px] sm:text-[56px] lg:text-[72px] font-bold tracking-tight text-white leading-[1.05]"
+            >
+              Deja de pagar comisiones abusivas.
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.12 }}
+              className="mt-6 text-[17px] sm:text-[20px] text-white/60 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal"
+            >
+              Recupera hasta un 30% de tus ganancias con nuestro ecosistema de ventas y gestión de tarifa plana. Tu esfuerzo, tus ganancias.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4"
+            >
+              <a href="#unete" className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white text-[#1d1d1f] hover:bg-white/90">
+                Comenzar ahora <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="#funciones-clave" className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white/10 text-white hover:bg-white/20 border border-white/10">
+                Ver funciones
+              </a>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -377,11 +394,11 @@ export const LandingPage: React.FC = () => {
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="space-y-1.5 pb-1">
                       <h3 className="text-[22px] font-bold tracking-[-0.03em] text-[#1d1d1f] flex items-center gap-2">
-                        <Rocket className="text-[#1d1d1f] w-5 h-5" />
-                        Acceso Prioritario
+                        <Rocket className="text-red-500 w-5 h-5" />
+                        Cupos de Fundador Limitados
                       </h3>
                       <p className="text-[13px] text-[#6e6e73] leading-relaxed">
-                        Inscríbete hoy y asegura una tarifa plana preferencial de por vida sin cargos por comisiones de ventas.
+                        Solo los primeros 50 restaurantes asegurarán nuestra tarifa plana de por vida. Bloquea tu precio hoy y dile adiós a las comisiones para siempre.
                       </p>
                     </div>
 
@@ -492,35 +509,17 @@ export const LandingPage: React.FC = () => {
                     {/* Plan Selection */}
                     <div className="space-y-1.5">
                       <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">Plan de Interés</label>
-                      <div className="grid grid-cols-2 gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setSelectedPlan("base")}
-                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${selectedPlan === "base"
-                            ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
-                            : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
-                            }`}
+                      <div className="relative">
+                        <Award className="absolute left-3.5 top-3 w-3.5 h-3.5 text-[#aeaeb2]" />
+                        <select
+                          value={selectedPlan}
+                          onChange={(e) => setSelectedPlan(e.target.value)}
+                          className="apple-input w-full py-2.5 pl-10 pr-3 text-[13px] text-[#1d1d1f] cursor-pointer appearance-none"
                         >
-                          <Terminal className="w-4 h-4 shrink-0" />
-                          <div className="text-left">
-                            <span className="block">Base</span>
-                            <span className={`text-[11px] font-mono ${selectedPlan === "base" ? "text-white/60" : "text-[#6e6e73]"}`}>$14.900/mes</span>
-                          </div>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedPlan("premium")}
-                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${selectedPlan === "premium"
-                            ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
-                            : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
-                            }`}
-                        >
-                          <Crown className="w-4 h-4 shrink-0" />
-                          <div className="text-left">
-                            <span className="block">Premium</span>
-                            <span className={`text-[11px] font-mono ${selectedPlan === "premium" ? "text-white/60" : "text-[#6e6e73]"}`}>$24.900/mes</span>
-                          </div>
-                        </button>
+                          <option value="base">Plan Base ($14.900/mes + IVA)</option>
+                          <option value="premium">Plan Premium ($24.900/mes + IVA)</option>
+                          <option value="pro">Restorant Pro ($49.900/mes + IVA)</option>
+                        </select>
                       </div>
                     </div>
 
@@ -532,12 +531,12 @@ export const LandingPage: React.FC = () => {
                     >
                       {isSubmitting ? (
                         <>
-                          <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                          <span>Inscribiendo...</span>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Procesando...</span>
                         </>
                       ) : (
                         <>
-                          <span>Inscribirme en Lista de Espera</span>
+                          <span>Asegurar mi cupo sin comisiones</span>
                           <ArrowRight className="w-4 h-4" />
                         </>
                       )}
@@ -849,11 +848,11 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative max-w-5xl mx-auto">
           {/* Ambient glow behind premium card */}
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-72 h-72 bg-neutral-950/5 blur-[100px] rounded-full pointer-events-none hidden md:block"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-72 bg-neutral-950/5 blur-[100px] rounded-full pointer-events-none hidden md:block"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 relative">
             {/* Base Plan */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -875,7 +874,7 @@ export const LandingPage: React.FC = () => {
                     <span className="text-3xl sm:text-4xl font-extrabold text-neutral-950 font-mono">
                       {annualBilling ? "$12.650" : "$14.900"}
                     </span>
-                    <span className="text-neutral-400 text-sm font-medium">/mes</span>
+                    <span className="text-neutral-400 text-sm font-medium">/mes <span className="text-[10px]">+ IVA</span></span>
                   </div>
                   {annualBilling && (
                     <p className="text-[10px] text-emerald-600 font-bold font-mono">$151.800 año — 2 meses gratis</p>
@@ -942,7 +941,7 @@ export const LandingPage: React.FC = () => {
                     <span className="text-3xl sm:text-4xl font-extrabold text-neutral-950 font-mono">
                       {annualBilling ? "$21.165" : "$24.900"}
                     </span>
-                    <span className="text-neutral-400 text-sm font-medium">/mes</span>
+                    <span className="text-neutral-400 text-sm font-medium">/mes <span className="text-[10px]">+ IVA</span></span>
                   </div>
                   {annualBilling && (
                     <p className="text-[10px] text-emerald-600 font-bold font-mono">$253.980 año — 2 meses gratis</p>
@@ -957,18 +956,21 @@ export const LandingPage: React.FC = () => {
                   <span className="font-semibold">Todo lo del Plan Base</span>
                 </li>
                 {[
-                  "Integración WhatsApp Business API",
-                  "Notificaciones automáticas a clientes",
-                  "Recepción de pedidos por WhatsApp",
-                  "Ventas directas sin comisiones por chat",
-                  "Validacion de delivery por conversacion",
-                  "Soporte técnico premium 24/7"
-                ].map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3 text-xs text-neutral-700">
-                    <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0 mt-0.5" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
+                  { icon: Bot, text: "Integración WhatsApp Business API" },
+                  { icon: BellRing, text: "Notificaciones automáticas a clientes" },
+                  { icon: Send, text: "Recepción de pedidos por WhatsApp" },
+                  { icon: MessageSquare, text: "Ventas directas sin comisiones por chat" },
+                  { icon: CheckCheck, text: "Validación de delivery por conversación" },
+                  { icon: Headset, text: "Soporte técnico premium 24/7" }
+                ].map((feature, i) => {
+                  const Icon = feature.icon;
+                  return (
+                    <li key={i} className="flex items-start gap-3 text-xs text-neutral-700">
+                      <Icon className="w-4 h-4 text-[#25D366] shrink-0 mt-0.5" />
+                      <span>{feature.text}</span>
+                    </li>
+                  );
+                })}
               </ul>
 
               <a
@@ -981,6 +983,70 @@ export const LandingPage: React.FC = () => {
               </a>
 
               <p className="text-[10px] text-neutral-400 text-center pt-3">14 días gratis. Sin tarjeta. Cancela cuando quieras.</p>
+            </motion.div>
+
+            {/* Restorant Pro Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white border border-neutral-200 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all relative flex flex-col group"
+            >
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <div className="bg-neutral-100 text-neutral-950 p-2 rounded-xl group-hover:bg-neutral-950 group-hover:text-white transition-colors">
+                    <Store className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider font-mono">Restorant Pro</span>
+                </div>
+
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl sm:text-4xl font-extrabold text-neutral-950 font-mono">
+                      {annualBilling ? "$42.415" : "$49.900"}
+                    </span>
+                    <span className="text-neutral-400 text-sm font-medium">/mes <span className="text-[10px]">+ IVA</span></span>
+                  </div>
+                  {annualBilling && (
+                    <p className="text-[10px] text-emerald-600 font-bold font-mono">$499.000 año — 2 meses gratis</p>
+                  )}
+                  <p className="text-xs text-neutral-500">Todo Premium, más gestión integral de salón presencial.</p>
+                </div>
+              </div>
+
+              <ul className="space-y-3 my-6 flex-1">
+                <li className="flex items-start gap-3 text-xs text-neutral-700 pb-2 border-b border-neutral-100">
+                  <Check className="w-4 h-4 text-neutral-950 shrink-0 mt-0.5" />
+                  <span className="font-semibold">Todo lo del Plan Premium</span>
+                </li>
+                {[
+                  { icon: LayoutGrid, text: "Administración gráfica de mesas" },
+                  { icon: ClipboardList, text: "Comandas especiales para salón" },
+                  { icon: Receipt, text: "Control de cuentas divididas" },
+                  { icon: UserCircle, text: "Múltiples perfiles de vendedores" },
+                  { icon: Coins, text: "Control de propinas detallado" }
+                ].map((feature, i) => {
+                  const Icon = feature.icon;
+                  return (
+                    <li key={i} className="flex items-start gap-3 text-xs text-neutral-700">
+                      <Icon className="w-4 h-4 text-neutral-950 shrink-0 mt-0.5" />
+                      <span>{feature.text}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <a
+                href="#waitlist-form-card"
+                onClick={() => setSelectedPlan("pro")}
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-[#1d1d1f] text-white hover:bg-[#3a3a3c] w-full mt-2"
+              >
+                <span>Elegir Pro</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <p className="text-[10px] text-neutral-400 text-center pt-3">14 días gratis. Cancela cuando quieras.</p>
             </motion.div>
           </div>
         </div>
@@ -1040,12 +1106,12 @@ export const LandingPage: React.FC = () => {
           <div className="absolute -bottom-10 left-0 w-48 h-48 bg-white/2 rounded-full blur-2xl pointer-events-none"></div>
 
           <div className="max-w-2xl mx-auto space-y-4">
-            <span className="font-mono text-neutral-400 font-bold text-xs tracking-widest block uppercase">Únete hoy</span>
+            <span className="font-mono text-neutral-400 font-bold text-xs tracking-widest block uppercase">Última Oportunidad</span>
             <h3 className="text-3xl sm:text-4xl font-serif font-extrabold tracking-tight leading-none">
-              Comienza a operar sin intermediarios
+              Cada día que pasas en las apps, pierdes un 30% de tu dinero
             </h3>
             <p className="text-neutral-300 text-sm sm:text-base leading-relaxed font-sans">
-              Regístrate en nuestra lista de espera exclusiva. Disfruta de la libertad gastronómica cobrando de forma directa, sin comisiones sorpresa por orden.
+              Toma el control hoy. Únete a los negocios que ya multiplicaron su rentabilidad. Asegura uno de los últimos cupos para la tarifa plana fundadora.
             </p>
           </div>
 
@@ -1054,7 +1120,7 @@ export const LandingPage: React.FC = () => {
               href="#waitlist-form-card"
               className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white text-[#1d1d1f] hover:bg-white/90"
             >
-              <span>Unirse a Lista de Espera</span>
+              <span>Reclamar mi Tarifa Plana</span>
               <ArrowRight className="w-4 h-4" />
             </a>
           </div>
