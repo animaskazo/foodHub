@@ -33,6 +33,8 @@ import { motion, AnimatePresence } from "motion/react";
 import videoUrl from "../public/video-foodhub.mp4";
 // @ts-ignore
 import videoHeroUrl from "../public/video-hero.mp4";
+import { TestimonialsSection } from "./TestimonialsSection";
+import { MainFeaturesSection } from "./MainFeaturesSection";
 
 export const LandingPage: React.FC = () => {
   const { addWaitlistProspect, waitlist, changeUserRole } = useApp();
@@ -193,51 +195,49 @@ export const LandingPage: React.FC = () => {
   ];
 
   return (
-    <div id="foodhub-artisanal-landing" className="bg-[#FAF9F6] text-neutral-900 min-h-screen selection:bg-neutral-900 selection:text-white font-sans pb-24 antialiased">
+    <div id="foodhub-artisanal-landing" className="bg-[#f5f5f7] text-[#1d1d1f] min-h-screen selection:bg-[#1d1d1f] selection:text-white font-sans pb-24 antialiased">
 
-      {/* Top Banner / Announcement with sleek black backing */}
-      <div className="bg-neutral-950 text-neutral-100 text-center py-2.5 px-4 text-xs font-medium tracking-wide">
-        <span className="inline-flex items-center gap-1.5 font-mono">
-          <Sparkles className="w-3.5 h-3.5 text-white animate-pulse" />
-          Ahorra más del 25% de comisiones mensuales migrando a FoodHub Flat SaaS.
+      {/* Top Banner */}
+      <div className="bg-[#1d1d1f] text-white text-center py-2.5 px-4">
+        <span className="inline-flex items-center gap-2 text-[13px] font-medium tracking-[-0.01em]">
+          Ahorra más del 25% de comisiones mensuales migrando a FoodHub.
+          <a href="#planes" className="underline underline-offset-2 text-white/70 hover:text-white transition-colors">Ver planes →</a>
         </span>
       </div>
 
       {/* Skip to main content link */}
       <a
         href="#main-content"
-        className="fixed -top-20 left-4 z-[100] bg-neutral-950 text-white px-4 py-2 rounded-b-xl text-xs font-bold transition-all focus:top-0 focus:outline-2 focus:outline-white"
+        className="fixed -top-20 left-4 z-[100] bg-[#1d1d1f] text-white px-4 py-2 rounded-b-xl text-xs font-semibold transition-all focus:top-0"
       >
         Ir al contenido principal
       </a>
 
-      {/* Elegant Header Navigation */}
-      <header className="border-b border-neutral-200/80 bg-white/80 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="bg-neutral-950 text-white p-2 rounded-xl shadow-sm" aria-hidden="true">
-              <Utensils className="w-5 h-5" />
+      {/* Header Navigation */}
+      <header className="bg-[rgba(245,245,247,0.85)] backdrop-blur-xl border-b border-black/[0.06] sticky top-0 z-40">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-[52px] flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="bg-[#1d1d1f] text-white p-1.5 rounded-lg" aria-hidden="true">
+              <Utensils className="w-4 h-4" />
             </div>
-            <span className="font-display font-extrabold text-xl tracking-tight text-neutral-950">foodhub</span>
-            <span className="bg-neutral-100 border border-neutral-200 text-neutral-800 px-2 py-0.5 rounded-full text-[10px] font-bold font-mono">SAAS</span>
+            <span className="font-bold text-[17px] tracking-[-0.03em] text-[#1d1d1f]">foodhub</span>
+            <span className="text-[#6e6e73] text-[11px] font-medium tracking-[-0.01em]">SaaS</span>
           </div>
 
           <nav aria-label="Navegación principal">
-            <div className="hidden md:flex items-center gap-4 lg:gap-6 text-xs lg:text-sm font-medium text-neutral-600">
-              <a href="#solucion-integrada" className="hover:text-neutral-950 transition-colors">Características</a>
-              <a href="#planes" className="hover:text-neutral-950 transition-colors">Planes</a>
-              <a href="#simulador" className="hover:text-neutral-950 transition-colors">Simulador</a>
-              <a href="#calculadora" className="hover:text-neutral-950 transition-colors">Calculadora</a>
-              <a href="#faq" className="hover:text-neutral-950 transition-colors">FAQ</a>
+            <div className="hidden md:flex items-center gap-6 lg:gap-8 text-[13px] font-medium text-[#6e6e73]">
+              <a href="#solucion-integrada" className="hover:text-[#1d1d1f] transition-colors duration-200">Características</a>
+              <a href="#funciones-clave" className="hover:text-[#1d1d1f] transition-colors duration-200">Funciones</a>
+              <a href="#planes" className="hover:text-[#1d1d1f] transition-colors duration-200">Planes</a>
+              <a href="#calculadora" className="hover:text-[#1d1d1f] transition-colors duration-200">Calculadora</a>
+              <a href="#faq" className="hover:text-[#1d1d1f] transition-colors duration-200">FAQ</a>
             </div>
           </nav>
 
-          <div className="flex items-center gap-3 relative">
-
-
+          <div className="flex items-center gap-3">
             <a
               href="#waitlist-form-card"
-              className="bg-neutral-950 hover:bg-neutral-800 text-white px-4 py-2 rounded-xl text-xs font-display font-bold tracking-wide transition-all shadow-sm"
+              className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[14px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-[#1d1d1f] text-white hover:bg-[#3a3a3c]"
             >
               Unirse
             </a>
@@ -245,9 +245,8 @@ export const LandingPage: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero Video Only */}
-      <section id="main-content" className="relative overflow-hidden h-[100vh] flex flex-col justify-center items-center text-center -mt-[64px]">
-        {/* Video Background */}
+      {/* Hero */}
+      <section id="main-content" className="relative overflow-hidden h-[100vh] flex flex-col justify-center items-center text-center -mt-[52px]">
         <div className="absolute inset-0 z-0">
           <video
             src={videoHeroUrl}
@@ -259,235 +258,207 @@ export const LandingPage: React.FC = () => {
             aria-hidden="true"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-neutral-950/40 pointer-events-none"></div>
-          {/* Blend to match the body bg */}
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#FAF9F6] to-transparent pointer-events-none"></div>
+          <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f5f5f7] to-transparent pointer-events-none"></div>
         </div>
 
-        <div className="relative z-10 w-full px-4 sm:px-6 max-w-5xl mx-auto pt-16">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+        <div className="relative z-10 w-full px-4 sm:px-6 max-w-4xl mx-auto">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl sm:text-6xl lg:text-7xl font-serif font-extrabold tracking-tight text-white leading-[1.05] drop-shadow-xl"
+            transition={{ duration: 0.6 }}
+            className="text-white/60 text-[13px] font-medium tracking-[0.05em] uppercase mb-5"
           >
-            Revoluciona tu <span className="text-amber-400">Restaurante</span>
+            FoodHub — La plataforma SaaS gastronómica
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.05 }}
+            className="text-[52px] sm:text-[68px] lg:text-[80px] font-bold tracking-[-0.04em] text-white leading-[1.02]"
+          >
+            Vende sin intermediarios.
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="mt-6 text-lg sm:text-xl text-neutral-200 max-w-2xl mx-auto drop-shadow-md font-medium"
+            transition={{ duration: 0.7, delay: 0.12 }}
+            className="mt-5 text-[17px] sm:text-[19px] text-white/70 max-w-2xl mx-auto leading-relaxed font-normal tracking-[-0.01em]"
           >
             La plataforma integral de ventas y gestión sin comisiones para el rubro gastronómico moderno.
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="mt-10 flex items-center justify-center gap-4"
           >
-            <a href="#unete" className="mt-10 inline-flex items-center gap-2 bg-white text-neutral-950 px-6 py-3.5 rounded-xl font-display font-bold shadow-xl hover:bg-neutral-50 hover:scale-105 active:scale-95 transition-all">
-              Descubre cómo <ArrowRight className="w-4 h-4" />
+            <a href="#unete" className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white text-[#1d1d1f] hover:bg-white/90">
+              Comenzar ahora <ArrowRight className="w-4 h-4" />
+            </a>
+            <a href="#funciones-clave" className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white/10 text-white hover:bg-white/20">
+              Ver funciones
             </a>
           </motion.div>
         </div>
       </section>
 
       {/* Main Content Info Section */}
-      <section id="unete" className="relative overflow-hidden pt-20 pb-16">
+      <section id="unete" className="relative overflow-hidden pt-20 pb-16 bg-[#f5f5f7]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
             {/* Left: Headline & Key Advantages */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55 }}
               className="lg:col-span-7 space-y-8 text-left"
             >
-              <h2 className="text-4xl sm:text-5xl font-serif font-extrabold tracking-tight text-neutral-950 leading-[1.05]">
+              <h2 className="text-[38px] sm:text-[46px] font-bold tracking-[-0.04em] text-[#1d1d1f] leading-[1.04]">
                 La plataforma de venta sin comisiones que tu negocio merece.
               </h2>
 
-              <p className="text-neutral-600 text-base sm:text-lg max-w-2xl leading-relaxed">
-                Diseñado exclusivamente para el rubro gastronómico moderno. FoodHub integra un <strong>Hub de atención ultrarrápido</strong>, tu propio <strong>e-commerce web</strong> independiente de las apps tradicionales de delivery, y un <strong>Asistente inteligente con IA</strong> que atiende comensales por ti.
+              <p className="text-[#6e6e73] text-[17px] max-w-xl leading-[1.6] tracking-[-0.01em]">
+                Diseñado para el rubro gastronómico. FoodHub integra un <strong className="text-[#1d1d1f] font-semibold">Hub de atención ultrarrápido</strong>, tu propio <strong className="text-[#1d1d1f] font-semibold">e-commerce web</strong> sin comisiones, y un <strong className="text-[#1d1d1f] font-semibold">Asistente IA</strong> que atiende comensales por ti.
               </p>
 
-              {/* Grid of Key Features - Bento Box Style */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <motion.div
-                  whileHover={{ y: -2 }}
-                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
-                >
-                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
-                    <Check className="w-5 h-5 stroke-[2.5]" />
+              {/* Feature Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                {[
+                  { title: "Punto de venta Multicanal", desc: "Cierres de turnos y arqueos instantáneos con máxima fluidez." },
+                  { title: "E-Commerce 0% Comisión", desc: "Recibe pedidos directo a tu cuenta sin cargos ocultos." },
+                  { title: "Chat de IA Integrado", desc: "Vendedor virtual disponible 24/7 respondiendo al instante." },
+                  { title: "Configuración en Minutos", desc: "Carga de menú por lotes e integración rápida para vender hoy." },
+                ].map((f) => (
+                  <div key={f.title} className="apple-card p-5 flex flex-col gap-3">
+                    <div className="w-7 h-7 rounded-[8px] bg-[#1d1d1f] flex items-center justify-center flex-shrink-0">
+                      <Check className="w-3.5 h-3.5 text-white stroke-[2.5]" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-[14px] text-[#1d1d1f] tracking-[-0.02em] mb-0.5">{f.title}</h4>
+                      <p className="text-[13px] text-[#6e6e73] leading-relaxed">{f.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">Punto de venta Multicanal</h4>
-                    <p className="text-xs text-neutral-500 leading-relaxed">Manejo de caja, cierres de turnos y arqueos instantáneos con máxima fluidez.</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ y: -2 }}
-                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
-                >
-                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
-                    <Check className="w-5 h-5 stroke-[2.5]" />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">E-Commerce con 0% Comisión</h4>
-                    <p className="text-xs text-neutral-500 leading-relaxed">Recibe pedidos de delivery y retiro directo a tu cuenta sin cargos ocultos.</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ y: -2 }}
-                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
-                >
-                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
-                    <Check className="w-5 h-5 stroke-[2.5]" />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">Chat de IA Integrado</h4>
-                    <p className="text-xs text-neutral-500 leading-relaxed">Ten un vendedor virtual disponible 24/7 respondiendo clientes al instante.</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ y: -2 }}
-                  className="bg-white border border-neutral-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-3"
-                >
-                  <div className="bg-neutral-50 text-neutral-950 p-2 rounded-xl w-fit border border-neutral-100">
-                    <Check className="w-5 h-5 stroke-[2.5]" />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-bold text-sm text-neutral-900 mb-1">Configuración en Minutos</h4>
-                    <p className="text-xs text-neutral-500 leading-relaxed">Carga de menú por lotes e integración rápida para empezar a vender hoy.</p>
-                  </div>
-                </motion.div>
+                ))}
               </div>
 
               {/* Social Proof */}
-              <div className="pt-4 flex items-center gap-6 border-t border-neutral-200">
-                <div className="flex -space-x-2" aria-label="Clientes destacados" role="img">
-                  <div className="w-8 h-8 rounded-full bg-neutral-900 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm" aria-label="María">M</div>
-                  <div className="w-8 h-8 rounded-full bg-neutral-700 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm" aria-label="Andrés">A</div>
-                  <div className="w-8 h-8 rounded-full bg-amber-500 border-2 border-white flex items-center justify-center font-bold text-[10px] text-white shadow-sm" aria-label="Sofía">S</div>
+              <div className="pt-5 flex items-center gap-5 border-t border-black/[0.07]">
+                <div className="flex -space-x-2.5" aria-label="Clientes destacados" role="img">
+                  {["#1d1d1f","#3a3a3c","#6e6e73"].map((bg, i) => (
+                    <div key={i} className="w-8 h-8 rounded-full border-2 border-[#f5f5f7] flex items-center justify-center text-[10px] font-bold text-white" style={{ background: bg }}>
+                      {["M","A","S"][i]}
+                    </div>
+                  ))}
                 </div>
                 <div>
-                  <div className="flex items-center gap-1 text-amber-500">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-amber-500" />)}
+                  <div className="flex items-center gap-0.5">
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-[#1d1d1f] text-[#1d1d1f]" />)}
                   </div>
-                  <p className="text-xs text-neutral-500 font-medium">Más de 100 negocios ya confían en nosotros.</p>
+                  <p className="text-[12px] text-[#6e6e73] mt-0.5">Más de 100 negocios ya confían en nosotros.</p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Right: High-fidelity Premium Sign-up Card */}
+            {/* Right: Sign-up Card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.55, delay: 0.15 }}
               id="waitlist-form-card"
               className="lg:col-span-5 relative"
             >
-              {/* Premium Glow Behind the Card */}
-              <div className="absolute -inset-1 bg-gradient-to-br from-amber-400/20 via-transparent to-neutral-900/10 rounded-[2rem] blur-lg"></div>
-
-              <div className="bg-white/95 backdrop-blur-xl border border-white/80 p-6 sm:p-8 rounded-3xl shadow-2xl shadow-neutral-900/5 relative overflow-hidden">
-                {/* Visual accent top line - Sleek black line */}
-                <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-950"></div>
+              <div className="bg-white border border-black/[0.07] p-6 sm:p-8 rounded-[24px] shadow-[0_2px_8px_rgba(0,0,0,0.06),0_16px_48px_rgba(0,0,0,0.08)] relative overflow-hidden">
 
                 {!isSuccess ? (
                   <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="space-y-1 pb-2">
-                      <h3 className="text-2xl font-serif font-black text-neutral-900 tracking-tight flex items-center gap-2">
-                        <Rocket className="text-neutral-950 w-5 h-5" />
+                    <div className="space-y-1.5 pb-1">
+                      <h3 className="text-[22px] font-bold tracking-[-0.03em] text-[#1d1d1f] flex items-center gap-2">
+                        <Rocket className="text-[#1d1d1f] w-5 h-5" />
                         Acceso Prioritario
                       </h3>
-                      <p className="text-xs text-neutral-500 leading-relaxed">
+                      <p className="text-[13px] text-[#6e6e73] leading-relaxed">
                         Inscríbete hoy y asegura una tarifa plana preferencial de por vida sin cargos por comisiones de ventas.
                       </p>
                     </div>
 
                     {/* Local Business Name */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Nombre de tu Restaurante</label>
-                      <div className="relative group">
-                        <Building aria-hidden="true" className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                      <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">Nombre de tu Restaurante</label>
+                      <div className="relative">
+                        <Building aria-hidden="true" className="absolute left-3.5 top-3.5 w-4 h-4 text-[#aeaeb2]" />
                         <input
                           type="text"
                           required
                           value={businessName}
                           onChange={(e) => setBusinessName(e.target.value)}
                           placeholder="Ej. Burguesería San Telmo"
-                          className="w-full bg-white border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
+                          className="apple-input w-full py-3 pl-10 pr-4 text-[14px] placeholder-[#aeaeb2]"
                         />
                       </div>
                     </div>
 
                     {/* Contact Owner */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Nombre del Propietario</label>
-                      <div className="relative group">
-                        <UserIcon className="absolute left-3.5 top-3.5 w-4 h-4 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                      <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">Nombre del Propietario</label>
+                      <div className="relative">
+                        <UserIcon className="absolute left-3.5 top-3.5 w-4 h-4 text-[#aeaeb2]" />
                         <input
                           type="text"
                           required
                           value={ownerName}
                           onChange={(e) => setOwnerName(e.target.value)}
                           placeholder="Ej. Sofía Mendoza"
-                          className="w-full bg-white border border-neutral-200 rounded-xl py-3 pl-11 pr-4 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
+                          className="apple-input w-full py-3 pl-10 pr-4 text-[14px] placeholder-[#aeaeb2]"
                         />
                       </div>
                     </div>
 
-                    {/* Email & Phone Rows */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Email & Phone */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">E-mail Corporativo</label>
-                        <div className="relative group">
-                          <Mail className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                        <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">E-mail</label>
+                        <div className="relative">
+                          <Mail className="absolute left-3.5 top-3 w-3.5 h-3.5 text-[#aeaeb2]" />
                           <input
                             type="email"
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="sofia@negocio.com"
-                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
+                            className="apple-input w-full py-2.5 pl-10 pr-3 text-[13px] placeholder-[#aeaeb2]"
                           />
                         </div>
                       </div>
-
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Teléfono Móvil</label>
-                        <div className="relative group">
-                          <Phone className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                        <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">Teléfono</label>
+                        <div className="relative">
+                          <Phone className="absolute left-3.5 top-3 w-3.5 h-3.5 text-[#aeaeb2]" />
                           <input
                             type="tel"
                             required
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             placeholder="+56 9 8765 4321"
-                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 transition-all shadow-sm"
+                            className="apple-input w-full py-2.5 pl-10 pr-3 text-[13px] placeholder-[#aeaeb2]"
                           />
                         </div>
                       </div>
                     </div>
 
-                    {/* Rubro & Volumen Selectors */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Rubro & Volumen */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Rubro Principal</label>
-                        <div className="relative group">
-                          <Utensils className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                        <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">Rubro</label>
+                        <div className="relative">
+                          <Utensils className="absolute left-3.5 top-3 w-3.5 h-3.5 text-[#aeaeb2]" />
                           <select
                             value={restaurantType}
                             onChange={(e) => setRestaurantType(e.target.value)}
-                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 cursor-pointer transition-all appearance-none shadow-sm"
+                            className="apple-input w-full py-2.5 pl-10 pr-3 text-[13px] text-[#1d1d1f] cursor-pointer appearance-none"
                           >
                             <option value="Hamburguesería">Hamburguesería</option>
                             <option value="Cafetería">Cafetería</option>
@@ -499,15 +470,14 @@ export const LandingPage: React.FC = () => {
                           </select>
                         </div>
                       </div>
-
                       <div className="space-y-1.5">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Pedidos Mensuales</label>
-                        <div className="relative group">
-                          <TrendingUp className="absolute left-3.5 top-3 w-3.5 h-3.5 text-neutral-400 group-focus-within:text-neutral-950 transition-colors" />
+                        <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">Pedidos / mes</label>
+                        <div className="relative">
+                          <TrendingUp className="absolute left-3.5 top-3 w-3.5 h-3.5 text-[#aeaeb2]" />
                           <select
                             value={monthlyOrders}
                             onChange={(e) => setMonthlyOrders(e.target.value)}
-                            className="w-full bg-white border border-neutral-200 rounded-xl py-2.5 pl-10 pr-4 text-xs text-neutral-700 focus:outline-none focus:border-neutral-950 focus:ring-4 focus:ring-neutral-950/10 cursor-pointer transition-all appearance-none shadow-sm"
+                            className="apple-input w-full py-2.5 pl-10 pr-3 text-[13px] text-[#1d1d1f] cursor-pointer appearance-none"
                           >
                             <option value="Menos de 200">Menos de 200</option>
                             <option value="200 - 500">200 - 500</option>
@@ -521,49 +491,51 @@ export const LandingPage: React.FC = () => {
 
                     {/* Plan Selection */}
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-neutral-500 ml-1">Plan de Interés</label>
+                      <label className="text-[11px] font-semibold text-[#6e6e73] tracking-[-0.01em] ml-0.5">Plan de Interés</label>
                       <div className="grid grid-cols-2 gap-2">
                         <button
                           type="button"
                           onClick={() => setSelectedPlan("base")}
-                          className={`flex items-center gap-2 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${selectedPlan === "base"
-                            ? "bg-neutral-950 text-white border-neutral-950 shadow-sm"
-                            : "bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400"
-                            }`}
+                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${
+                            selectedPlan === "base"
+                              ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
+                              : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
+                          }`}
                         >
-                          <Terminal className="w-4 h-4" />
+                          <Terminal className="w-4 h-4 shrink-0" />
                           <div className="text-left">
                             <span className="block">Base</span>
-                            <span className={`font-mono ${selectedPlan === "base" ? "text-white/80" : "text-neutral-400"}`}>$14.900/mes</span>
+                            <span className={`text-[11px] font-mono ${selectedPlan === "base" ? "text-white/60" : "text-[#6e6e73]"}`}>$14.900/mes</span>
                           </div>
                         </button>
                         <button
                           type="button"
                           onClick={() => setSelectedPlan("premium")}
-                          className={`flex items-center gap-2 p-3 rounded-xl border text-xs font-bold transition-all cursor-pointer ${selectedPlan === "premium"
-                            ? "bg-neutral-950 text-white border-neutral-950 shadow-sm"
-                            : "bg-white text-neutral-600 border-neutral-200 hover:border-neutral-400"
-                            }`}
+                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${
+                            selectedPlan === "premium"
+                              ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
+                              : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
+                          }`}
                         >
-                          <Crown className="w-4 h-4" />
+                          <Crown className="w-4 h-4 shrink-0" />
                           <div className="text-left">
                             <span className="block">Premium</span>
-                            <span className={`font-mono ${selectedPlan === "premium" ? "text-white/80" : "text-neutral-400"}`}>$24.900/mes</span>
+                            <span className={`text-[11px] font-mono ${selectedPlan === "premium" ? "text-white/60" : "text-[#6e6e73]"}`}>$24.900/mes</span>
                           </div>
                         </button>
                       </div>
                     </div>
 
-                    {/* Submit Button - Solid Black */}
+                    {/* Submit */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-neutral-950 hover:bg-neutral-900 text-white font-display font-bold py-3.5 rounded-xl transition-all hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.99] disabled:opacity-50 flex items-center justify-center gap-2 cursor-pointer mt-6"
+                      className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-[#1d1d1f] text-white hover:bg-[#3a3a3c] w-full disabled:opacity-50 mt-4"
                     >
                       {isSubmitting ? (
                         <>
                           <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                          <span>Inscribiendo en base de datos...</span>
+                          <span>Inscribiendo...</span>
                         </>
                       ) : (
                         <>
@@ -573,8 +545,8 @@ export const LandingPage: React.FC = () => {
                       )}
                     </button>
 
-                    <p className="text-[10px] text-center text-neutral-400 pt-2">
-                      Sin compromisos financieros. Tu tarifa plana de lanzamiento garantizada.
+                    <p className="text-[12px] text-center text-[#aeaeb2] pt-1.5">
+                      Sin compromisos. Tarifa plana de lanzamiento garantizada.
                     </p>
                   </form>
                 ) : (
@@ -609,14 +581,14 @@ export const LandingPage: React.FC = () => {
                       <div className="grid grid-cols-2 gap-2">
                         <button
                           onClick={() => changeUserRole("admin")}
-                          className="bg-white hover:bg-neutral-50 text-neutral-800 font-display font-bold py-2.5 px-3 rounded-xl text-xs border border-neutral-200 shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                          className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] border border-black/[0.08] hover:bg-[#e5e5ea]"
                         >
-                          <ShieldCheck className="w-3.5 h-3.5 text-neutral-950" />
+                          <ShieldCheck className="w-4 h-4" />
                           <span>Ver Admin</span>
                         </button>
                         <button
                           onClick={() => changeUserRole("cajero")}
-                          className="bg-white hover:bg-neutral-50 text-neutral-800 font-display font-bold py-2.5 px-3 rounded-xl text-xs border border-neutral-200 shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                          className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-[#f5f5f7] text-[#1d1d1f] border border-black/[0.08] hover:bg-[#e5e5ea]"
                         >
                           <Terminal className="w-3.5 h-3.5 text-neutral-950" />
                           <span>Probar POS</span>
@@ -632,24 +604,20 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Premium Video Showcase Section */}
-      <section className="bg-neutral-950 text-white py-20 relative overflow-hidden">
-        {/* Background ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neutral-850/10 blur-[120px] rounded-full pointer-events-none"></div>
-
+      {/* Video Showcase Section */}
+      <section className="bg-[#1d1d1f] text-white py-24 relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold tracking-tight text-white">
-              Control total de tu negocio en una sola pantalla
+          <div className="text-center max-w-2xl mx-auto space-y-4">
+            <p className="eyebrow text-white/40">Demostración</p>
+            <h2 className="text-[36px] sm:text-[46px] font-bold tracking-[-0.04em] text-white leading-[1.04]">
+              Control total en una sola pantalla
             </h2>
-            <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
-              Mira cómo se sincronizan las órdenes de tu e-commerce, el flujo del cajero en el POS terminal y la comanda directa a cocina en tiempo real. Rapidez absoluta, sin intermediarios.
+            <p className="text-[17px] text-white/50 leading-relaxed tracking-[-0.01em] font-normal">
+              Órdenes del e-commerce, flujo del cajero y comandas directas a cocina sincronizados en tiempo real.
             </p>
           </div>
 
-          {/* Video Player Mockup */}
-          <div className="max-w-4xl mx-auto rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-neutral-850 bg-neutral-900 relative group">
+          <div className="max-w-4xl mx-auto rounded-[20px] overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] bg-[#2c2c2e] relative">
             <video
               src={videoUrl}
               autoPlay
@@ -659,338 +627,27 @@ export const LandingPage: React.FC = () => {
               preload="metadata"
               className="w-full h-full object-cover aspect-video"
             />
-            {/* Ambient light overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/45 to-transparent pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/40 to-transparent pointer-events-none"></div>
           </div>
         </div>
       </section>
 
-      {/* Trust Badges - Square / Shopify inspired flat monochrome row */}
-      <section className="bg-white border-y border-neutral-200/80 py-8">
+      {/* Trust Row */}
+      <section className="bg-white border-y border-black/[0.06] py-7">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[10px] font-bold tracking-wider text-neutral-400 uppercase mb-5">
-            CONSTRUIDO CON INFRAESTRUCTURA PREMIUM COMPATIBLE
+          <p className="text-center eyebrow text-[#aeaeb2] mb-5">
+            Infraestructura compatible
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-60 grayscale hover:grayscale-0 transition-all">
-            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">SUPABASE</span>
-            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">GEMINI API</span>
-            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">DATOS ENCRIPTADOS</span>
-            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">RESEND</span>
-            <span className="font-mono font-bold text-sm tracking-widest text-neutral-800">KAPSO</span>
+          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-5">
+            {["Supabase","Gemini API","Datos Encriptados","Resend","Kapso"].map(t => (
+              <span key={t} className="text-[13px] font-semibold tracking-[-0.01em] text-[#aeaeb2]">{t}</span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Interactive Live Product Simulator Section */}
-      <section id="simulador" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-          <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest font-mono">DEMOSTRACIÓN INTERACTIVA</span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-neutral-950 tracking-tight">Prueba el ecosistema FoodHub en vivo</h2>
-          <p className="text-neutral-500 text-sm font-sans">
-            Interactúa con nuestro simulador a continuación para entender cómo FoodHub unifica todas las áreas del restaurante en un único ecosistema fluido.
-          </p>
-        </div>
-
-        {/* Tab Switcher - Square Hardware Style */}
-        <div className="bg-white border border-neutral-200 rounded-3xl overflow-hidden shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-0">
-
-          {/* Left: Tab Selectors */}
-          <div className="lg:col-span-4 border-r border-neutral-200 bg-neutral-50/50 p-6 flex flex-col justify-between">
-            <div className="space-y-2" role="tablist" aria-label="Módulos del simulador">
-              <h3 className="font-bold text-neutral-400 text-xs mb-4 uppercase tracking-wider font-mono">Selecciona un Módulo</h3>
-
-              {/* Tab 1: POS */}
-              <button
-                role="tab"
-                aria-selected={activeSimTab === "pos"}
-                aria-controls="sim-panel-pos"
-                id="sim-tab-pos"
-                onClick={() => setActiveSimTab("pos")}
-                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "pos"
-                  ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
-                  : "border-transparent hover:bg-neutral-100 text-neutral-500"
-                  }`}
-              >
-                <div className={`p-2.5 rounded-xl ${activeSimTab === "pos" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`} aria-hidden="true">
-                  <Terminal className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-xs">Punto de Venta (POS)</h4>
-                  <p className="text-[11px] text-neutral-400 mt-0.5">La terminal de caja rápida para tus camareros.</p>
-                </div>
-              </button>
-
-              {/* Tab 2: Store */}
-              <button
-                role="tab"
-                aria-selected={activeSimTab === "store"}
-                aria-controls="sim-panel-store"
-                id="sim-tab-store"
-                onClick={() => setActiveSimTab("store")}
-                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "store"
-                  ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
-                  : "border-transparent hover:bg-neutral-100 text-neutral-500"
-                  }`}
-              >
-                <div className={`p-2.5 rounded-xl ${activeSimTab === "store" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`} aria-hidden="true">
-                  <ShoppingBag className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-xs">Tienda Delivery Directo</h4>
-                  <p className="text-[11px] text-neutral-400 mt-0.5">Tu menú web interactivo para pedidos sin comisiones.</p>
-                </div>
-              </button>
-
-              {/* Tab 3: AI Assistant */}
-              <button
-                role="tab"
-                aria-selected={activeSimTab === "ai"}
-                aria-controls="sim-panel-ai"
-                id="sim-tab-ai"
-                onClick={() => setActiveSimTab("ai")}
-                className={`w-full text-left p-4 rounded-2xl border transition-all cursor-pointer flex gap-4 ${activeSimTab === "ai"
-                  ? "bg-neutral-950 border-neutral-950 text-white shadow-sm"
-                  : "border-transparent hover:bg-neutral-100 text-neutral-500"
-                  }`}
-              >
-                <div className={`p-2.5 rounded-xl ${activeSimTab === "ai" ? "bg-white/15 text-white" : "bg-neutral-100 text-neutral-400"}`} aria-hidden="true">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-xs">Asistente Inteligente IA</h4>
-                  <p className="text-[11px] text-neutral-400 mt-0.5">Atención automatizada entrenada con Google Gemini.</p>
-                </div>
-              </button>
-            </div>
-
-            <div className="pt-6 border-t border-neutral-200 mt-6 lg:mt-0 text-xs text-neutral-400 flex items-center gap-1.5">
-              <Info className="w-4 h-4 text-neutral-950" />
-              <span>Demostración con datos locales integrados.</span>
-            </div>
-          </div>
-
-          {/* Right: Simulated Screen View */}
-          <div className="lg:col-span-8 p-6 sm:p-10 bg-neutral-950/5 flex items-center justify-center min-h-[440px] relative">
-            <div className="absolute inset-0 bg-neutral-950/5 pointer-events-none"></div>
-
-            <div className="w-full max-w-md bg-white text-neutral-800 rounded-2xl shadow-lg border border-neutral-200 overflow-hidden flex flex-col h-[380px]">
-
-              {/* Device Header Bar */}
-              <div className="bg-neutral-900 text-white py-2 px-4 text-[10px] flex justify-between items-center font-mono tracking-wider uppercase">
-                <span>Simulador de Hardware</span>
-                <span className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
-                  <span>ONLINE</span>
-                </span>
-              </div>
-
-              {/* Interactive Screens */}
-              <div className="flex-1 overflow-y-auto p-4 flex flex-col justify-between">
-
-                {/* 1. POS TERMINAL SCREEN */}
-                {activeSimTab === "pos" && (
-                  <div id="sim-panel-pos" role="tabpanel" aria-labelledby="sim-tab-pos" className="h-full flex flex-col justify-between space-y-3">
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center border-b border-neutral-100 pb-2">
-                        <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide font-display">Caja Registradora #1</span>
-                        <span className="bg-neutral-100 border border-neutral-200 text-neutral-800 text-[9px] font-bold px-2 py-0.5 rounded-full">Turno Abierto</span>
-                      </div>
-
-                      {/* Products to click */}
-                      <p className="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider">Toca un plato para agregarlo al carro:</p>
-                      <div className="grid grid-cols-2 gap-2">
-                        <button
-                          onClick={() => addPosItem({ id: "burger", name: "Doble Burger", price: 7900 })}
-                          className="bg-white border border-neutral-200 hover:border-neutral-950 p-2 rounded-xl text-left hover:bg-neutral-50 transition-all cursor-pointer shadow-sm animate-scale-up"
-                        >
-                          <h5 className="font-bold text-xs text-neutral-800">🍔 Doble Burger</h5>
-                          <span className="text-[10px] text-neutral-950 font-bold font-mono">$7.900 CLP</span>
-                        </button>
-                        <button
-                          onClick={() => addPosItem({ id: "beer", name: "Cerveza IPA", price: 4200 })}
-                          className="bg-white border border-neutral-200 hover:border-neutral-950 p-2 rounded-xl text-left hover:bg-neutral-50 transition-all cursor-pointer shadow-sm animate-scale-up"
-                        >
-                          <h5 className="font-bold text-xs text-neutral-800">🍺 Cerveza IPA</h5>
-                          <span className="text-[10px] text-neutral-950 font-bold font-mono">$4.200 CLP</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Cart list preview */}
-                    <div className="bg-neutral-50 rounded-xl border border-neutral-200 p-3 flex-1 min-h-[110px] flex flex-col justify-between shadow-inner">
-                      <div className="space-y-1 overflow-y-auto max-h-[85px] pr-1">
-                        {posCart.length === 0 ? (
-                          <p className="text-center text-[11px] text-neutral-400 py-6">El carro del POS está vacío</p>
-                        ) : (
-                          posCart.map(item => (
-                            <div key={item.id} className="flex justify-between text-xs border-b border-neutral-100 pb-1 font-mono">
-                              <span>{item.name} x{item.qty}</span>
-                              <span className="font-bold">${(item.price * item.qty).toLocaleString("es-CL")}</span>
-                            </div>
-                          ))
-                        )}
-                      </div>
-
-                      {posCart.length > 0 && (
-                        <div className="border-t border-neutral-200 pt-2 mt-2 flex justify-between items-center">
-                          <div>
-                            <span className="text-[9px] text-neutral-400 uppercase tracking-wider block">Total POS</span>
-                            <span className="text-sm font-black text-neutral-950 font-mono">
-                              ${posCart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0).toLocaleString("es-CL")}
-                            </span>
-                          </div>
-
-                          {!paymentDone ? (
-                            <button
-                              onClick={handlePosPayment}
-                              disabled={isPaying}
-                              className="bg-neutral-950 hover:bg-neutral-800 text-white text-[10px] font-bold py-1.5 px-3 rounded-lg flex items-center gap-1 cursor-pointer transition-colors font-display"
-                            >
-                              {isPaying ? (
-                                <>
-                                  <span className="w-2.5 h-2.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                                  <span>Procesando...</span>
-                                </>
-                              ) : (
-                                <>
-                                  <span>Generar Cobro</span>
-                                  <ArrowRight className="w-2.5 h-2.5" />
-                                </>
-                              )}
-                            </button>
-                          ) : (
-                            <span className="text-neutral-950 font-mono font-bold text-xs flex items-center gap-1 animate-pulse bg-neutral-100 border border-neutral-200 px-2 py-0.5 rounded">
-                              <Check className="w-3.5 h-3.5 stroke-[3.5]" /> ¡PAGADO!
-                            </span>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* 2. ONLINE STORE SCREEN */}
-                {activeSimTab === "store" && (
-                  <div id="sim-panel-store" role="tabpanel" aria-labelledby="sim-tab-store" className="h-full flex flex-col justify-between space-y-3 animate-scale-up">
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center bg-neutral-50 border border-neutral-200 px-3 py-1 rounded-xl">
-                        <span className="text-[10px] text-neutral-500 truncate max-w-[200px] font-mono">tu-local.foodhub.cl</span>
-                        <span className="text-[8px] font-bold text-neutral-950 bg-neutral-100 border border-neutral-200 px-1.5 py-0.5 rounded-full">Web Oficial</span>
-                      </div>
-
-                      <div className="bg-white border border-neutral-200 rounded-xl p-3 flex gap-3 items-center shadow-sm">
-                        <div className="bg-neutral-100 text-lg p-2 rounded-xl">🍕</div>
-                        <div className="flex-1">
-                          <h4 className="font-serif font-bold text-xs text-neutral-800">Pizza Margherita Especial</h4>
-                          <p className="text-[9px] text-neutral-400 leading-tight">Mozzarella fresca, albahaca y aceite de oliva extra virgen.</p>
-                          <span className="text-xs font-bold text-neutral-950 block mt-1 font-mono">$10.900 CLP</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Customization checkboxes */}
-                    <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-3 space-y-2">
-                      <span className="text-[9px] font-bold text-neutral-400 uppercase tracking-wider block">Adicionales:</span>
-                      <div className="flex justify-between items-center text-xs">
-                        <label className="flex items-center gap-2 cursor-pointer select-none">
-                          <input
-                            type="checkbox"
-                            checked={storeCustomization.extraCheese}
-                            onChange={(e) => setStoreCustomization(prev => ({ ...prev, extraCheese: e.target.checked }))}
-                            className="rounded border-neutral-300 text-neutral-950 focus:ring-neutral-950 w-4 h-4"
-                          />
-                          <span>Queso extra (+$1.500)</span>
-                        </label>
-                      </div>
-                      <div className="flex justify-between items-center text-xs">
-                        <label className="flex items-center gap-2 cursor-pointer select-none">
-                          <input
-                            type="checkbox"
-                            checked={storeCustomization.spicy}
-                            onChange={(e) => setStoreCustomization(prev => ({ ...prev, spicy: e.target.checked }))}
-                            className="rounded border-neutral-300 text-neutral-950 focus:ring-neutral-950 w-4 h-4"
-                          />
-                          <span>Salsa picante artesanal (+$500)</span>
-                        </label>
-                      </div>
-                    </div>
-
-                    {/* Order action */}
-                    <div>
-                      {storeOrderStatus === "idle" ? (
-                        <button
-                          onClick={() => {
-                            setStoreOrderStatus("ordered");
-                            setTimeout(() => setStoreOrderStatus("idle"), 3500);
-                          }}
-                          className="w-full bg-neutral-950 hover:bg-neutral-900 text-white font-display font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5 cursor-pointer shadow-sm transition-all"
-                        >
-                          <span>Ordenar Directo (${(10900 + (storeCustomization.extraCheese ? 1500 : 0) + (storeCustomization.spicy ? 500 : 0)).toLocaleString("es-CL")} CLP)</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                      ) : (
-                        <div className="bg-neutral-100 border border-neutral-200 text-neutral-900 p-2 rounded-xl text-center text-xs font-bold animate-pulse">
-                          🎉 ¡Pedido Enviado! Entró directo al POS sin comisiones.
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* 3. AI CHATBOT SCREEN */}
-                {activeSimTab === "ai" && (
-                  <div id="sim-panel-ai" role="tabpanel" aria-labelledby="sim-tab-ai" className="h-full flex flex-col justify-between space-y-2 animate-scale-up">
-                    <div className="flex-1 bg-neutral-50 border border-neutral-200 rounded-xl p-3 flex flex-col space-y-2 overflow-y-auto max-h-[220px] text-xs shadow-inner">
-                      {aiChat.map((msg, i) => (
-                        <div key={i} className={`p-2.5 rounded-2xl max-w-[85%] leading-tight ${msg.sender === "ai"
-                          ? "bg-white border border-neutral-200/50 self-start text-neutral-800 shadow-sm"
-                          : "bg-neutral-950 text-white self-end"
-                          }`}>
-                          {msg.text}
-                        </div>
-                      ))}
-                      {isAiTyping && (
-                        <div className="bg-neutral-100 border border-neutral-200/30 text-neutral-400 p-2 rounded-xl self-start text-[10px] font-mono animate-pulse">
-                          El bot está redactando respuesta...
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Preset customer messages */}
-                    <div className="space-y-1 pt-1">
-                      <span className="text-[9px] text-neutral-400 font-bold uppercase tracking-wider block">Preguntas de clientes:</span>
-                      <div className="flex flex-wrap gap-1">
-                        <button
-                          onClick={() => triggerAiResponse(
-                            "¿Tienen opciones sin gluten?",
-                            "¡Por supuesto! Nuestras hamburguesas se pueden solicitar al plato o con pan sin gluten libre de trazas. ¿Deseas agregar alguna de nuestras variedades?"
-                          )}
-                          disabled={isAiTyping}
-                          className="bg-white hover:bg-neutral-50 text-neutral-800 text-[10px] font-bold py-1 px-2.5 rounded-lg border border-neutral-200 cursor-pointer shadow-sm disabled:opacity-40"
-                        >
-                          ¿Celíacos/Gluten-free?
-                        </button>
-                        <button
-                          onClick={() => triggerAiResponse(
-                            "¿Tienen entrega hoy a Providencia?",
-                            "¡Hola! Sí, despachamos directo a Providencia con una tarifa única fija de $2.500 CLP. ¿Quieres armar tu canasta de delivery?"
-                          )}
-                          disabled={isAiTyping}
-                          className="bg-white hover:bg-neutral-50 text-neutral-800 text-[10px] font-bold py-1 px-2.5 rounded-lg border border-neutral-200 cursor-pointer shadow-sm disabled:opacity-40"
-                        >
-                          ¿Despacho Providencia?
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
+      {/* Main 3 Features Section (Replacing Interactive Simulator) */}
+      <MainFeaturesSection />
 
       {/* Interactive Savings Calculator */}
       <section id="calculadora" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -1249,7 +906,7 @@ export const LandingPage: React.FC = () => {
               <a
                 href="#waitlist-form-card"
                 onClick={() => setSelectedPlan("base")}
-                className="w-full bg-neutral-950 hover:bg-neutral-800 text-white font-display font-bold py-3.5 rounded-xl text-xs transition-all hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-[#1d1d1f] text-white hover:bg-[#3a3a3c] w-full mt-2"
               >
                 <span>Comenzar gratis</span>
                 <ArrowRight className="w-4 h-4" />
@@ -1316,7 +973,7 @@ export const LandingPage: React.FC = () => {
               <a
                 href="#waitlist-form-card"
                 onClick={() => setSelectedPlan("premium")}
-                className="w-full bg-neutral-950 hover:bg-neutral-800 text-white font-display font-bold py-3.5 rounded-xl text-xs transition-all hover:shadow-xl hover:-translate-y-0.5 active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer mt-2 shadow-lg"
+                className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-[#1d1d1f] text-white hover:bg-[#3a3a3c] w-full mt-2"
               >
                 <span>Elegir Premium</span>
                 <ArrowRight className="w-4 h-4" />
@@ -1327,6 +984,9 @@ export const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section (Hidden for now) */}
+      {/* <TestimonialsSection /> */}
 
       {/* Elegant Accordion FAQ Section */}
       <section id="faq" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -1391,7 +1051,7 @@ export const LandingPage: React.FC = () => {
           <div className="pt-2 flex flex-col sm:flex-row justify-center gap-4">
             <a
               href="#waitlist-form-card"
-              className="bg-white hover:bg-neutral-100 text-neutral-950 font-display font-bold px-8 py-4 rounded-xl text-xs sm:text-sm transition-all shadow-md inline-flex items-center justify-center gap-2"
+              className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[15px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white text-[#1d1d1f] hover:bg-white/90"
             >
               <span>Unirse a Lista de Espera</span>
               <ArrowRight className="w-4 h-4" />
@@ -1404,38 +1064,38 @@ export const LandingPage: React.FC = () => {
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: showBackToTop ? 1 : 0, scale: showBackToTop ? 1 : 0.8 }}
-        className="fixed bottom-6 right-6 z-50 bg-neutral-950 text-white p-3.5 rounded-2xl shadow-xl hover:bg-neutral-800 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+        className="fixed bottom-6 right-6 z-50 bg-[#1d1d1f] text-white p-3 rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.2)] hover:bg-[#3a3a3c] active:scale-95 transition-all duration-200 cursor-pointer"
         aria-label="Volver arriba"
       >
         <ChevronDown className="w-5 h-5 rotate-180" />
       </motion.button>
 
       {/* Footer */}
-      <footer className="border-t border-neutral-200/80 bg-[#FAF9F6] py-10 mt-8">
+      <footer className="border-t border-black/[0.06] bg-[#f5f5f7] py-10 mt-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="bg-neutral-950 text-white p-1.5 rounded-lg shadow-sm">
+            <div className="bg-[#1d1d1f] text-white p-1.5 rounded-lg">
               <Utensils className="w-4 h-4" />
             </div>
-            <span className="font-display font-extrabold text-lg tracking-tight text-neutral-950">foodhub</span>
-            <span className="text-xs text-neutral-400 font-mono ml-2">© {new Date().getFullYear()}</span>
+            <span className="font-bold text-[17px] tracking-[-0.03em] text-[#1d1d1f]">foodhub</span>
+            <span className="text-[12px] text-[#aeaeb2] ml-1.5">© {new Date().getFullYear()}</span>
           </div>
 
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 text-sm font-medium">
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
             <a
               href="mailto:hola@digital-solutions.work"
-              className="flex items-center gap-2 text-neutral-500 hover:text-neutral-950 transition-colors"
+              className="flex items-center gap-2 text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors duration-200"
             >
-              <Mail className="w-4 h-4" />
+              <Mail className="w-3.5 h-3.5" />
               <span>hola@digital-solutions.work</span>
             </a>
             <a
               href="https://wa.me/56995355996"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-neutral-500 hover:text-[#25D366] transition-colors"
+              className="flex items-center gap-2 text-[13px] text-[#6e6e73] hover:text-[#25D366] transition-colors duration-200"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-3.5 h-3.5" />
               <span>+56 9 9535 5996</span>
             </a>
           </div>
