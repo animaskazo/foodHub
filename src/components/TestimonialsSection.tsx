@@ -38,7 +38,7 @@ const testimonialsData: Testimonial[] = [
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300&h=300",
     rating: 5,
     comment:
-      "El asistente de IA integrado con Gemini fue una revelación. Atiende las consultas sobre alérgenos e ingredientes a cualquier hora y despacha los pedidos directo a la impresora de comandas.",
+      "El asistente de Inteligencia Artificial fue una revelación. Atiende las consultas sobre alérgenos e ingredientes a cualquier hora y despacha los pedidos directo a la impresora de comandas.",
     storeUrl: "https://napoli.foodhub.cl",
     metricsBadge: "+35% en pedidos directos"
   },

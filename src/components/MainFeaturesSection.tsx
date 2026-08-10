@@ -88,7 +88,7 @@ export const MainFeaturesSection: React.FC = () => {
               </li>
               <li className="flex items-center gap-2 text-xs font-medium text-neutral-700">
                 <CheckCircle2 className="w-4 h-4 text-neutral-950 shrink-0" />
-                <span>Asistente IA con Google Gemini para ventas en WhatsApp</span>
+                <span>Asistente con Inteligencia Artificial para ventas en WhatsApp</span>
               </li>
             </ul>
           </div>
@@ -141,7 +141,7 @@ export const MainFeaturesSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-xs text-neutral-950">3. Chatbot IA</h4>
-                  <p className="text-[10px] text-neutral-400 mt-0.5">Gemini 24/7</p>
+                  <p className="text-[10px] text-neutral-400 mt-0.5">Inteligencia Artificial 24/7</p>
                 </div>
                 <span className="inline-block bg-neutral-100 text-neutral-800 text-[9px] font-bold font-mono px-2 py-0.5 rounded-full border border-neutral-200">
                   Auto-Venta

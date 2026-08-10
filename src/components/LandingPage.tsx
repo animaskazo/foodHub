@@ -137,7 +137,7 @@ export const LandingPage: React.FC = () => {
   const totalVolume = ordersCount * avgTicket;
   const commissionPercentage = 0.27;
   const deliveryCommissions = Math.round(totalVolume * commissionPercentage);
-  const foodhubFixedSubscription = 59900; // 59.900 CLP flat monthly SaaS fee
+  const foodhubFixedSubscription = 24900; // 59.900 CLP flat monthly SaaS fee
   const estimatedSavings = deliveryCommissions - foodhubFixedSubscription;
 
   // Interactive POS helper functions
@@ -182,7 +182,7 @@ export const LandingPage: React.FC = () => {
     },
     {
       q: "¿Cómo funciona el Asistente de IA?",
-      a: "Está integrado con la API oficial de Google Gemini. Lee de forma automática tu catálogo cargado en FoodHub (ingredientes, precios, disponibilidad) para responder a tus clientes preguntas sobre alérgenos, sugerir acompañamientos o ayudarles a armar su pedido ideal directamente desde WhatsApp o web."
+      a: "Nuestro asistente utiliza Inteligencia Artificial para leer de forma automática tu catálogo cargado en FoodHub (ingredientes, precios, disponibilidad) y responder a tus clientes preguntas sobre alérgenos, sugerir acompañamientos o ayudarles a armar su pedido ideal directamente desde WhatsApp o web."
     },
     {
       q: "¿Necesito comprar hardware o terminales especiales?",
@@ -347,9 +347,9 @@ export const LandingPage: React.FC = () => {
               {/* Social Proof */}
               <div className="pt-5 flex items-center gap-5 border-t border-black/[0.07]">
                 <div className="flex -space-x-2.5" aria-label="Clientes destacados" role="img">
-                  {["#1d1d1f","#3a3a3c","#6e6e73"].map((bg, i) => (
+                  {["#1d1d1f", "#3a3a3c", "#6e6e73"].map((bg, i) => (
                     <div key={i} className="w-8 h-8 rounded-full border-2 border-[#f5f5f7] flex items-center justify-center text-[10px] font-bold text-white" style={{ background: bg }}>
-                      {["M","A","S"][i]}
+                      {["M", "A", "S"][i]}
                     </div>
                   ))}
                 </div>
@@ -496,11 +496,10 @@ export const LandingPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setSelectedPlan("base")}
-                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${
-                            selectedPlan === "base"
-                              ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
-                              : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
-                          }`}
+                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${selectedPlan === "base"
+                            ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
+                            : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
+                            }`}
                         >
                           <Terminal className="w-4 h-4 shrink-0" />
                           <div className="text-left">
@@ -511,11 +510,10 @@ export const LandingPage: React.FC = () => {
                         <button
                           type="button"
                           onClick={() => setSelectedPlan("premium")}
-                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${
-                            selectedPlan === "premium"
-                              ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
-                              : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
-                          }`}
+                          className={`flex items-center gap-2 p-3 rounded-[10px] border text-[13px] font-semibold transition-all duration-200 cursor-pointer tracking-[-0.01em] ${selectedPlan === "premium"
+                            ? "bg-[#1d1d1f] text-white border-[#1d1d1f]"
+                            : "bg-white text-[#1d1d1f] border-black/[0.1] hover:border-black/25"
+                            }`}
                         >
                           <Crown className="w-4 h-4 shrink-0" />
                           <div className="text-left">
@@ -639,7 +637,7 @@ export const LandingPage: React.FC = () => {
             Infraestructura compatible
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-5">
-            {["Supabase","Gemini API","Datos Encriptados","Resend","Kapso"].map(t => (
+            {["Supabase", "Inteligencia Artificial", "Datos Encriptados", "Resend", "Klap", "Kapso"].map(t => (
               <span key={t} className="text-[13px] font-semibold tracking-[-0.01em] text-[#aeaeb2]">{t}</span>
             ))}
           </div>
@@ -650,33 +648,28 @@ export const LandingPage: React.FC = () => {
       <MainFeaturesSection />
 
       {/* Interactive Savings Calculator */}
-      <section id="calculadora" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="bg-white border border-neutral-200 rounded-3xl p-6 sm:p-10 shadow-sm relative overflow-hidden">
-          {/* Top visual accent bar */}
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-neutral-950"></div>
+      <section id="calculadora" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="apple-card p-8 sm:p-12">
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-            {/* Left Column: Sliders */}
-            <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Left Column: Header + Sliders */}
+            <div className="lg:col-span-7 space-y-8 text-left">
               <div className="space-y-3">
-                <span className="inline-flex items-center gap-1 bg-neutral-100 text-neutral-900 border border-neutral-200 px-2.5 py-1 rounded-full text-xs font-bold font-mono">
-                  <Calculator className="w-4 h-4 text-neutral-950" />
-                  <span>Calculadora de Retorno</span>
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-serif font-extrabold text-neutral-950 tracking-tight">
+                <p className="eyebrow text-[#6e6e73]">Calculadora de Retorno</p>
+                <h3 className="text-[32px] sm:text-[40px] font-bold tracking-[-0.04em] text-[#1d1d1f] leading-[1.04]">
                   Calcula tu ahorro real
                 </h3>
-                <p className="text-neutral-500 text-sm font-sans leading-relaxed">
-                  Las comisiones ocultas desinflan tus márgenes. Compara lo que estás pagando en comisiones abusivas frente a la tarifa plana sin sorpresas de FoodHub.
+                <p className="text-[#6e6e73] text-[15px] leading-relaxed tracking-[-0.01em]">
+                  Las comisiones ocultas desinflan tus márgenes. Compara lo que pagas en apps de delivery frente a la tarifa plana de FoodHub.
                 </p>
               </div>
 
               {/* Slider 1: Orders per month */}
-              <div className="space-y-2 p-4 bg-neutral-50 rounded-2xl border border-neutral-200/60">
-                <div className="flex justify-between items-center text-sm font-bold">
-                  <span className="text-neutral-700">Pedidos Mensuales Estimados</span>
-                  <span className="text-neutral-950 font-mono text-lg">{ordersCount} pedidos / mes</span>
+              <div className="space-y-3">
+                <div className="flex justify-between items-baseline gap-3">
+                  <span className="text-[13px] font-semibold text-[#1d1d1f] tracking-[-0.01em] shrink-0">Pedidos mensuales</span>
+                  <span className="text-[17px] font-bold text-[#1d1d1f] tracking-[-0.02em] font-mono tabular-nums text-right">{ordersCount.toLocaleString("es-CL")} <span className="text-[13px] font-medium text-[#6e6e73]">pedidos</span></span>
                 </div>
                 <input
                   type="range"
@@ -685,20 +678,20 @@ export const LandingPage: React.FC = () => {
                   step="50"
                   value={ordersCount}
                   onChange={(e) => setOrdersCount(parseInt(e.target.value))}
-                  className="w-full accent-neutral-950 bg-neutral-200 h-2 rounded-lg appearance-none cursor-pointer"
+                  className="w-full h-[3px] rounded-full appearance-none cursor-pointer"
+                  style={{ background: `linear-gradient(to right, #1d1d1f ${((ordersCount - 50) / (3000 - 50)) * 100}%, rgba(0,0,0,0.1) ${((ordersCount - 50) / (3000 - 50)) * 100}%)` }}
                 />
-                <div className="flex justify-between text-[10px] text-neutral-400 font-mono">
-                  <span>50 pedidos</span>
-                  <span>1.500 pedidos</span>
-                  <span>3.000 pedidos</span>
+                <div className="flex justify-between text-[12px] text-[#aeaeb2] font-medium">
+                  <span>50</span>
+                  <span>3.000 pedidos / mes</span>
                 </div>
               </div>
 
               {/* Slider 2: Average Ticket */}
-              <div className="space-y-2 p-4 bg-neutral-50 rounded-2xl border border-neutral-200/60">
-                <div className="flex justify-between items-center text-sm font-bold">
-                  <span className="text-neutral-700">Valor de Ticket Promedio</span>
-                  <span className="text-neutral-950 font-mono text-lg">${avgTicket.toLocaleString("es-CL")} CLP</span>
+              <div className="space-y-3">
+                <div className="flex justify-between items-baseline gap-3">
+                  <span className="text-[13px] font-semibold text-[#1d1d1f] tracking-[-0.01em] shrink-0">Ticket promedio</span>
+                  <span className="text-[17px] font-bold text-[#1d1d1f] tracking-[-0.02em] font-mono tabular-nums text-right">${avgTicket.toLocaleString("es-CL")} <span className="text-[13px] font-medium text-[#6e6e73]">CLP</span></span>
                 </div>
                 <input
                   type="range"
@@ -707,43 +700,51 @@ export const LandingPage: React.FC = () => {
                   step="1000"
                   value={avgTicket}
                   onChange={(e) => setAvgTicket(parseInt(e.target.value))}
-                  className="w-full accent-neutral-950 bg-neutral-200 h-2 rounded-lg appearance-none cursor-pointer"
+                  className="w-full h-[3px] rounded-full appearance-none cursor-pointer"
+                  style={{ background: `linear-gradient(to right, #1d1d1f ${((avgTicket - 4000) / (40000 - 4000)) * 100}%, rgba(0,0,0,0.1) ${((avgTicket - 4000) / (40000 - 4000)) * 100}%)` }}
                 />
-                <div className="flex justify-between text-[10px] text-neutral-400 font-mono">
-                  <span>$4.000 CLP</span>
-                  <span>$22.000 CLP</span>
+                <div className="flex justify-between text-[12px] text-[#aeaeb2] font-medium">
+                  <span>$4.000</span>
                   <span>$40.000 CLP</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Column: Thermal Receipt Simulation */}
-            <div className="lg:col-span-5 bg-neutral-50 border border-neutral-200 p-6 rounded-2xl flex flex-col justify-between space-y-6 shadow-sm relative">
-              <div className="space-y-4 font-mono text-xs">
-                <div className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider flex justify-between border-b border-neutral-200 pb-3">
-                  <span>Volumen Gastronómico Bruto</span>
-                  <span className="font-bold text-neutral-800">${totalVolume.toLocaleString("es-CL")} CLP</span>
-                </div>
+            {/* Right Column: Results Panel */}
+            <div className="lg:col-span-5 flex flex-col gap-3">
 
-                <div className="space-y-1.5 border-b border-neutral-200 pb-3">
-                  <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">Comisión Apps de Delivery (27%)</span>
-                  <p className="text-sm font-bold text-neutral-800">-${deliveryCommissions.toLocaleString("es-CL")} CLP / mes</p>
+              {/* Metrics rows */}
+              <div className="bg-[#f5f5f7] rounded-[18px] p-6 space-y-4">
+                <div className="flex justify-between items-center gap-2 pb-4 border-b border-black/[0.07]">
+                  <span className="text-[13px] text-[#6e6e73] tracking-[-0.01em] shrink-0">Volumen bruto mensual</span>
+                  <span className="text-[13px] font-bold text-[#1d1d1f] font-mono tabular-nums text-right">${totalVolume.toLocaleString("es-CL")}</span>
                 </div>
-
-                <div className="space-y-1.5">
-                  <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">Tarifa Plana FoodHub SaaS</span>
-                  <p className="text-sm font-bold text-neutral-900">${foodhubFixedSubscription.toLocaleString("es-CL")} CLP / mes</p>
+                <div className="flex justify-between items-center gap-2 pb-4 border-b border-black/[0.07]">
+                  <div className="shrink-0">
+                    <span className="text-[13px] text-[#6e6e73] tracking-[-0.01em]">Apps de delivery</span>
+                    <span className="ml-1.5 text-[11px] text-[#aeaeb2] font-mono">~27%</span>
+                  </div>
+                  <span className="text-[13px] font-bold text-rose-500 font-mono tabular-nums text-right">−${deliveryCommissions.toLocaleString("es-CL")}</span>
+                </div>
+                <div className="flex justify-between items-center gap-2">
+                  <span className="text-[13px] text-[#6e6e73] tracking-[-0.01em] shrink-0">FoodHub tarifa plana</span>
+                  <span className="text-[13px] font-bold text-[#1d1d1f] font-mono tabular-nums text-right">${foodhubFixedSubscription.toLocaleString("es-CL")}</span>
                 </div>
               </div>
 
-              {/* Main Net Saving Callout */}
-              <div className="bg-neutral-950 text-white rounded-xl p-5 text-center space-y-1">
-                <span className="text-[9px] font-mono tracking-widest block text-neutral-400 uppercase">Ahorro Neto Estimado</span>
-                <h3 className="text-2xl sm:text-3xl font-black font-mono">
-                  ${estimatedSavings > 0 ? estimatedSavings.toLocaleString("es-CL") : 0} CLP
-                </h3>
-                <span className="text-[9px] block opacity-80 font-mono tracking-wide">✓ Dinero libre para crecer tu negocio</span>
+              {/* Savings callout */}
+              <div className="bg-[#1d1d1f] rounded-[18px] px-6 py-7 text-center">
+                <p className="eyebrow text-white/30 mb-4">Ahorro neto estimado / mes</p>
+                <div className="flex items-baseline justify-center gap-1.5 flex-wrap">
+                  <span className="text-[28px] font-bold text-white/50 font-mono">$</span>
+                  <span className="text-[32px] sm:text-[40px] font-bold tracking-[-0.04em] text-white leading-none font-mono tabular-nums break-all">
+                    {estimatedSavings > 0 ? estimatedSavings.toLocaleString("es-CL") : "0"}
+                  </span>
+                </div>
+                <p className="text-[12px] text-white/30 mt-2 font-mono tracking-[0.04em] uppercase">CLP</p>
+                <p className="text-[13px] text-white/40 mt-1 tracking-[-0.01em]">dinero directo a tu negocio</p>
               </div>
+
             </div>
 
           </div>
@@ -785,8 +786,8 @@ export const LandingPage: React.FC = () => {
                   <td className="py-4 px-6">Aislada (no sincronizada)</td>
                 </tr>
                 <tr className="hover:bg-neutral-50/40 transition-colors">
-                  <td className="py-4 px-6 font-semibold text-neutral-900">Conserjería de IA (Gemini)</td>
-                  <td className="py-4 px-6 bg-neutral-100/30 text-neutral-950 font-bold border-x border-neutral-200">✓ Integrado de fábrica para alérgenos y menús</td>
+                  <td className="py-4 px-6 font-semibold text-neutral-900">Asistente de Inteligencia Artificial</td>
+                  <td className="py-4 px-6 bg-neutral-100/30 text-neutral-950 font-bold border-x border-neutral-200">✓ Integrado para alérgenos, menús y pedidos</td>
                   <td className="py-4 px-6 text-neutral-400">✗ No disponible</td>
                   <td className="py-4 px-6 text-neutral-400">✗ No disponible</td>
                 </tr>
@@ -887,7 +888,7 @@ export const LandingPage: React.FC = () => {
                 {[
                   { icon: Terminal, text: "POS terminal con arqueo de caja" },
                   { icon: ShoppingBag, text: "Tienda online con dominio propio" },
-                  { icon: Sparkles, text: "Chat asistente IA (Gemini)" },
+                  { icon: Sparkles, text: "Asistente de Inteligencia Artificial" },
                   { icon: Smartphone, text: "Menú digital sincronizado" },
                   { icon: Zap, text: "Comandas directas a cocina" },
                   { icon: HeartHandshake, text: "Soporte técnico prioritario" },
@@ -923,7 +924,7 @@ export const LandingPage: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.15 }}
               className="bg-white border-2 border-neutral-950 rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all relative flex flex-col group"
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-neutral-950 text-white text-[10px] font-bold px-4 py-1 rounded-full font-mono tracking-wider flex items-center gap-1.5 shadow-lg animate-pulse">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-[10px] font-bold px-4 py-1 rounded-full font-mono tracking-wider flex items-center gap-1.5 shadow-lg">
                 <Crown className="w-3.5 h-3.5" />
                 <span>Más Popular</span>
               </div>
