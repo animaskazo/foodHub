@@ -262,7 +262,7 @@ export const LandingPage: React.FC = () => {
       <section id="main-content" className="relative min-h-[100vh] bg-[#111111] overflow-hidden flex flex-col-reverse lg:flex-row items-stretch -mt-[52px]">
         
         {/* Left: Video */}
-        <div className="w-full lg:w-[40%] h-[60vh] lg:min-h-[100vh] relative flex-shrink-0">
+        <div className="w-full lg:w-1/2 h-[60vh] lg:min-h-[100vh] relative flex-shrink-0">
           <video
             src={videoHeroUrl}
             autoPlay
@@ -277,8 +277,8 @@ export const LandingPage: React.FC = () => {
         </div>
 
         {/* Right: Text Content */}
-        <div className="w-full lg:w-[60%] flex items-center lg:pl-12 xl:pl-20 2xl:pl-24">
-          <div className="w-full max-w-3xl px-6 sm:px-12 lg:px-0 py-20 lg:py-32 z-10 text-center lg:text-left mx-auto lg:mx-0">
+        <div className="w-full lg:w-1/2 flex items-center lg:pl-12 xl:pl-20 2xl:pl-24">
+          <div className="w-full max-w-2xl px-6 sm:px-12 lg:px-0 py-20 lg:py-32 z-10 text-center lg:text-left mx-auto lg:mx-0">
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
