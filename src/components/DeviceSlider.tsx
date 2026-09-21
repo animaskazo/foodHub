@@ -28,7 +28,7 @@ const slides = [
     id: "desktop",
     image: sliderCUrl,
     label: "Panel de Administración",
-    description: "Dashboard completo con métricas, órdenes y reportes en tiempo real.",
+    description: "Dashboard completo, órdenes, métricas y reportes en tiempo real.",
     badge: "Desktop",
   },
 ];
@@ -142,9 +142,9 @@ export const DeviceSlider: React.FC = () => {
                 <img
                   src={slides[current].image}
                   alt={slides[current].label}
-                  className={`max-w-none h-auto object-contain object-top drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${slides[current].id === 'mobile'
-                      ? 'w-[150%] sm:w-[130%] lg:w-[110%] -mt-6 sm:-mt-12 lg:-mt-16'
-                      : 'w-[115%] sm:w-[100%] lg:w-[90%]'
+                  className={`max-w-none object-contain object-top drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${slides[current].id === 'mobile'
+                    ? 'w-[230%] sm:w-[200%] lg:w-[180%] h-auto -mt-24 sm:-mt-36 lg:-mt-48'
+                    : 'w-[115%] sm:w-[100%] lg:w-[90%] h-auto'
                     }`}
                   draggable={false}
                 />
@@ -172,7 +172,7 @@ export const DeviceSlider: React.FC = () => {
                     {slides[current].label}
                   </h3>
                 </div>
-                <p className="text-[15px] sm:text-[16px] text-[#6e6e73] max-w-lg mx-auto">
+                <p className="text-[15px] sm:text-[16px] text-[#6e6e73] whitespace-nowrap overflow-hidden text-ellipsis px-4">
                   {slides[current].description}
                 </p>
               </motion.div>
@@ -189,8 +189,8 @@ export const DeviceSlider: React.FC = () => {
                 >
                   <div
                     className={`h-[4px] rounded-full transition-all duration-300 ${index === current
-                        ? "w-10 bg-[#1d1d1f]"
-                        : "w-4 bg-neutral-200 group-hover:bg-neutral-300"
+                      ? "w-10 bg-[#1d1d1f]"
+                      : "w-4 bg-neutral-200 group-hover:bg-neutral-300"
                       }`}
                   />
                   {/* Autoplay progress bar on active dot */}
