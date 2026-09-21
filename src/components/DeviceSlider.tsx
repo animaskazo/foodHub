@@ -91,11 +91,11 @@ export const DeviceSlider: React.FC = () => {
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto space-y-5 mb-4 sm:mb-6">
           <h2 className="text-[44px] sm:text-[56px] lg:text-[72px] font-bold tracking-tight text-[#1d1d1f] leading-[1.05]">
-            Vende más. <br className="hidden sm:block" /> Automatiza todo.
+            Vende más. <br /> Automatiza todo.
           </h2>
           <p className="text-[17px] sm:text-[20px] text-[#6e6e73] font-medium leading-relaxed max-w-3xl mx-auto">
             Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, <span className="relative inline-block"><span className="relative z-10 font-semibold text-[#1d1d1f]">sin comisiones ocultas</span><span className="absolute bottom-1 left-0 w-full h-2.5 bg-rose-200/60 -z-10 rounded-sm"></span></span>.
@@ -104,7 +104,7 @@ export const DeviceSlider: React.FC = () => {
 
         {/* Slider Container */}
         <div className="relative max-w-5xl mx-auto mt-0">
-          
+
           {/* Navigation arrows (outside the image for a clean look) */}
           <button
             onClick={prev}
@@ -113,7 +113,7 @@ export const DeviceSlider: React.FC = () => {
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-          
+
           <button
             onClick={next}
             aria-label="Siguiente slide"
@@ -142,11 +142,10 @@ export const DeviceSlider: React.FC = () => {
                 <img
                   src={slides[current].image}
                   alt={slides[current].label}
-                  className={`max-w-none h-auto object-contain object-top drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${
-                    slides[current].id === 'mobile'
+                  className={`max-w-none h-auto object-contain object-top drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${slides[current].id === 'mobile'
                       ? 'w-[150%] sm:w-[130%] lg:w-[110%] -mt-6 sm:-mt-12 lg:-mt-16'
                       : 'w-[115%] sm:w-[100%] lg:w-[90%]'
-                  }`}
+                    }`}
                   draggable={false}
                 />
               </motion.div>
@@ -189,11 +188,10 @@ export const DeviceSlider: React.FC = () => {
                   className="relative cursor-pointer p-1 group flex items-center justify-center"
                 >
                   <div
-                    className={`h-[4px] rounded-full transition-all duration-300 ${
-                      index === current
+                    className={`h-[4px] rounded-full transition-all duration-300 ${index === current
                         ? "w-10 bg-[#1d1d1f]"
                         : "w-4 bg-neutral-200 group-hover:bg-neutral-300"
-                    }`}
+                      }`}
                   />
                   {/* Autoplay progress bar on active dot */}
                   {index === current && !isPaused && (
