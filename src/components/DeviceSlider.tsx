@@ -1,0 +1,216 @@
+import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+// @ts-ignore
+import sliderAUrl from "../public/slider-a.webp";
+// @ts-ignore
+import sliderBUrl from "../public/slider-b.webp";
+// @ts-ignore
+import sliderCUrl from "../public/slider-c.webp";
+
+const slides = [
+  {
+    id: "pos",
+    image: sliderAUrl,
+    label: "Punto de Venta",
+    description: "Terminal POS ultrarrápido para atención presencial en tablet.",
+    badge: "iPad",
+  },
+  {
+    id: "mobile",
+    image: sliderBUrl,
+    label: "Dashboard Móvil",
+    description: "Controla tu negocio desde cualquier lugar con tu smartphone.",
+    badge: "iPhone",
+  },
+  {
+    id: "desktop",
+    image: sliderCUrl,
+    label: "Panel de Administración",
+    description: "Dashboard completo con métricas, órdenes y reportes en tiempo real.",
+    badge: "Desktop",
+  },
+];
+
+const AUTOPLAY_INTERVAL = 5000;
+
+export const DeviceSlider: React.FC = () => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(0); // -1 = left, 1 = right
+  const [isPaused, setIsPaused] = useState(false);
+
+  const goTo = useCallback(
+    (index: number) => {
+      setDirection(index > current ? 1 : -1);
+      setCurrent(index);
+    },
+    [current]
+  );
+
+  const next = useCallback(() => {
+    setDirection(1);
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  }, []);
+
+  // Autoplay
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(next, AUTOPLAY_INTERVAL);
+    return () => clearInterval(timer);
+  }, [isPaused, next]);
+
+  const slideVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 300 : -300,
+      opacity: 0,
+      scale: 0.92,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -300 : 300,
+      opacity: 0,
+      scale: 0.92,
+    }),
+  };
+
+  return (
+    <section
+      id="main-content"
+      className="bg-white text-[#1d1d1f] pt-12 sm:pt-16 pb-20 sm:pb-28 relative overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* Header */}
+        <div className="text-center max-w-4xl mx-auto space-y-5 mb-4 sm:mb-6">
+          <h2 className="text-[44px] sm:text-[56px] lg:text-[72px] font-bold tracking-tight text-[#1d1d1f] leading-[1.05]">
+            Vende más. <br className="hidden sm:block" /> Automatiza todo.
+          </h2>
+          <p className="text-[17px] sm:text-[20px] text-[#6e6e73] font-medium leading-relaxed max-w-3xl mx-auto">
+            Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, <span className="relative inline-block"><span className="relative z-10 font-semibold text-[#1d1d1f]">sin comisiones ocultas</span><span className="absolute bottom-1 left-0 w-full h-2.5 bg-rose-200/60 -z-10 rounded-sm"></span></span>.
+          </p>
+        </div>
+
+        {/* Slider Container */}
+        <div className="relative max-w-5xl mx-auto mt-0">
+          
+          {/* Navigation arrows (outside the image for a clean look) */}
+          <button
+            onClick={prev}
+            aria-label="Slide anterior"
+            className="absolute -left-4 sm:-left-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] flex items-center justify-center transition-transform hover:scale-110 cursor-pointer border border-neutral-100 text-neutral-600 hover:text-neutral-900"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button
+            onClick={next}
+            aria-label="Siguiente slide"
+            className="absolute -right-4 sm:-right-12 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.08)] flex items-center justify-center transition-transform hover:scale-110 cursor-pointer border border-neutral-100 text-neutral-600 hover:text-neutral-900"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Image Area */}
+          <div className="relative w-full h-[350px] sm:h-[500px] lg:h-[600px] flex items-start justify-center overflow-hidden">
+            <AnimatePresence initial={false} custom={direction}>
+              <motion.div
+                key={slides[current].id}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 200, damping: 25 },
+                  opacity: { duration: 0.3 },
+                  scale: { duration: 0.3 },
+                }}
+                className="absolute inset-0 flex items-start justify-center pt-2 sm:pt-4"
+              >
+                <img
+                  src={slides[current].image}
+                  alt={slides[current].label}
+                  className={`max-w-none h-auto object-contain object-top drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${
+                    slides[current].id === 'mobile'
+                      ? 'w-[150%] sm:w-[130%] lg:w-[110%] -mt-6 sm:-mt-12 lg:-mt-16'
+                      : 'w-[115%] sm:w-[100%] lg:w-[90%]'
+                  }`}
+                  draggable={false}
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Info + Controls below image */}
+          <div className="mt-12 flex flex-col items-center gap-6">
+            {/* Slide label + description */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slides[current].id + "-info"}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.25 }}
+                className="text-center space-y-2.5"
+              >
+                <div className="inline-flex items-center gap-2.5">
+                  <span className="bg-neutral-100 text-neutral-600 text-[11px] font-bold font-mono px-3 py-1 rounded-full uppercase tracking-wider">
+                    {slides[current].badge}
+                  </span>
+                  <h3 className="text-[22px] sm:text-[26px] font-bold tracking-tight text-[#1d1d1f]">
+                    {slides[current].label}
+                  </h3>
+                </div>
+                <p className="text-[15px] sm:text-[16px] text-[#6e6e73] max-w-lg mx-auto">
+                  {slides[current].description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Dots navigation */}
+            <div className="flex items-center gap-2.5 pt-2">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.id}
+                  onClick={() => goTo(index)}
+                  aria-label={`Ir a ${slide.label}`}
+                  className="relative cursor-pointer p-1 group flex items-center justify-center"
+                >
+                  <div
+                    className={`h-[4px] rounded-full transition-all duration-300 ${
+                      index === current
+                        ? "w-10 bg-[#1d1d1f]"
+                        : "w-4 bg-neutral-200 group-hover:bg-neutral-300"
+                    }`}
+                  />
+                  {/* Autoplay progress bar on active dot */}
+                  {index === current && !isPaused && (
+                    <motion.div
+                      className="absolute left-1 h-[4px] rounded-full bg-neutral-400"
+                      initial={{ width: 0 }}
+                      animate={{ width: "2.5rem" }}
+                      transition={{ duration: AUTOPLAY_INTERVAL / 1000, ease: "linear" }}
+                      key={`progress-${current}`}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

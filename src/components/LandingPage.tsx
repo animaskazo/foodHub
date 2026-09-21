@@ -42,11 +42,10 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 // @ts-ignore
-import videoUrl from "../public/video-foodhub.mp4";
-// @ts-ignore
 import videoHeroUrl from "../public/video-hero.mp4";
 import { TestimonialsSection } from "./TestimonialsSection";
 import { MainFeaturesSection } from "./MainFeaturesSection";
+import { DeviceSlider } from "./DeviceSlider";
 
 export const LandingPage: React.FC = () => {
   const { addWaitlistProspect, waitlist, changeUserRole } = useApp();
@@ -230,11 +229,7 @@ export const LandingPage: React.FC = () => {
       <header className="bg-[rgba(245,245,247,0.85)] backdrop-blur-xl border-b border-black/[0.06] sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-[52px] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="bg-[#1d1d1f] text-white p-1.5 rounded-lg" aria-hidden="true">
-              <Utensils className="w-4 h-4" />
-            </div>
-            <span className="font-bold text-[17px] tracking-[-0.03em] text-[#1d1d1f]">foodhub</span>
-            <span className="text-[#6e6e73] text-[11px] font-medium tracking-[-0.01em]">SaaS</span>
+            <span className="font-bold text-[17px] tracking-[-0.03em] text-[#1d1d1f]">FoodHub</span>
           </div>
 
           <nav aria-label="Navegación principal">
@@ -258,67 +253,8 @@ export const LandingPage: React.FC = () => {
         </div>
       </header>
 
-      {/* Hero */}
-      <section id="main-content" className="relative min-h-[100vh] bg-[#111111] overflow-hidden flex flex-col-reverse lg:flex-row items-stretch -mt-[52px]">
-        
-        {/* Left: Video */}
-        <div className="w-full lg:w-1/2 h-[60vh] lg:min-h-[100vh] relative flex-shrink-0">
-          <video
-            src={videoHeroUrl}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover"
-          />
-          {/* Gradient to blend video with background */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-[#111111]/20 to-transparent pointer-events-none z-10 lg:hidden"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#111111]/20 to-[#111111] pointer-events-none z-10 hidden lg:block"></div>
-        </div>
-
-        {/* Right: Text Content */}
-        <div className="w-full lg:w-1/2 flex items-center lg:pl-12 xl:pl-20 2xl:pl-24">
-          <div className="w-full max-w-2xl px-6 sm:px-12 lg:px-0 py-20 lg:py-32 z-10 text-center lg:text-left mx-auto lg:mx-0">
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-white/50 text-[13px] font-semibold tracking-[0.05em] uppercase mb-4 sm:mb-5"
-            >
-              Plataforma SaaS Gastronómica
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.05 }}
-              className="text-[44px] sm:text-[56px] lg:text-[72px] font-bold tracking-tight text-white leading-[1.05]"
-            >
-              Vende más. <br className="hidden sm:block" /> Automatiza todo.
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.12 }}
-              className="mt-6 text-[17px] sm:text-[20px] text-white/60 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal"
-            >
-              Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, sin comisiones ocultas.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4"
-            >
-              <a href="#unete" className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white text-[#1d1d1f] hover:bg-white/90">
-                Comenzar ahora <ArrowRight className="w-4 h-4" />
-              </a>
-              <a href="#funciones-clave" className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold tracking-[-0.01em] transition-colors duration-200 cursor-pointer bg-white/10 text-white hover:bg-white/20 border border-white/10">
-                Ver funciones
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* Hero: Device Showcase Slider */}
+      <DeviceSlider />
 
       {/* Main Content Info Section */}
       <section id="unete" className="relative overflow-hidden pt-20 pb-16 bg-[#f5f5f7]">
@@ -601,33 +537,7 @@ export const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Video Showcase Section */}
-      <section className="bg-[#1d1d1f] text-white py-24 relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <p className="eyebrow text-white/40">Demostración</p>
-            <h2 className="text-[36px] sm:text-[46px] font-bold tracking-[-0.04em] text-white leading-[1.04]">
-              Control total en una sola pantalla
-            </h2>
-            <p className="text-[17px] text-white/50 leading-relaxed tracking-[-0.01em] font-normal">
-              Órdenes del e-commerce, flujo del cajero y comandas directas a cocina sincronizados en tiempo real.
-            </p>
-          </div>
 
-          <div className="max-w-4xl mx-auto rounded-[20px] overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] bg-[#2c2c2e] relative">
-            <video
-              src={videoUrl}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              className="w-full h-full object-cover aspect-video"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1d1d1f]/40 to-transparent pointer-events-none"></div>
-          </div>
-        </div>
-      </section>
 
       {/* Trust Row */}
       <section className="bg-white border-y border-black/[0.06] py-7">
@@ -1141,10 +1051,7 @@ export const LandingPage: React.FC = () => {
       <footer className="border-t border-black/[0.06] bg-[#f5f5f7] py-10 mt-8">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="bg-[#1d1d1f] text-white p-1.5 rounded-lg">
-              <Utensils className="w-4 h-4" />
-            </div>
-            <span className="font-bold text-[17px] tracking-[-0.03em] text-[#1d1d1f]">foodhub</span>
+            <span className="font-bold text-[17px] tracking-[-0.03em] text-[#1d1d1f]">Foodhub</span>
             <span className="text-[12px] text-[#aeaeb2] ml-1.5">© {new Date().getFullYear()}</span>
           </div>
 
