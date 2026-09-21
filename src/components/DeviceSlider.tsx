@@ -98,7 +98,7 @@ export const DeviceSlider: React.FC = () => {
             Vende más. <br /> Automatiza todo.
           </h2>
           <p className="text-[17px] sm:text-[20px] text-[#6e6e73] font-medium leading-relaxed max-w-3xl mx-auto">
-            Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, <span className="relative inline-block"><span className="relative z-10 font-semibold text-[#1d1d1f]">sin comisiones ocultas</span><span className="absolute bottom-1 left-0 w-full h-2.5 bg-rose-200/60 -z-10 rounded-sm"></span></span>.
+            Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, <span className="relative inline-block"><span className="relative z-10 font-semibold text-[#1d1d1f]">sin comisiones.</span><span className="absolute bottom-1 left-0 w-full h-2.5 bg-rose-200/60 -z-10 rounded-sm"></span></span>.
           </p>
         </div>
 
