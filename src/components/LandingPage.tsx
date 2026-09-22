@@ -298,10 +298,12 @@ export const LandingPage: React.FC = () => {
             {/* Social Proof */}
             <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <div className="flex -space-x-2.5" aria-label="Clientes destacados" role="img">
-                {["#1d1d1f", "#3a3a3c", "#6e6e73"].map((bg, i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-[12px] font-bold text-white shadow-sm" style={{ background: bg }}>
-                    {["M", "A", "S"][i]}
-                  </div>
+                {[
+                  "https://fgvhbniauzjvzeuespmf.supabase.co/storage/v1/object/public/images/logo/1785878296223_j5zqlhi.jpg",
+                  "https://fgvhbniauzjvzeuespmf.supabase.co/storage/v1/object/public/images/logo/1785944069009_0tss3xj.jpg",
+                  "https://fgvhbniauzjvzeuespmf.supabase.co/storage/v1/object/public/images/logo/1789000235386_xqk1wm2.jpg",
+                ].map((src, i) => (
+                  <img key={i} src={src} alt="Cliente" className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm hover:scale-125 hover:z-10 transition-transform duration-200" />
                 ))}
               </div>
               <div className="text-center sm:text-left">
@@ -418,64 +420,6 @@ export const LandingPage: React.FC = () => {
 
             </div>
 
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Comparison Matrix Section */}
-      <section id="solucion-integrada" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-          <span className="text-xs font-bold text-neutral-500 uppercase tracking-widest font-mono">TABLA COMPARATIVA</span>
-          <h2 className="text-3xl sm:text-4xl font-serif font-extrabold text-neutral-950 tracking-tight">Compara FoodHub con el resto</h2>
-          <p className="text-neutral-500 text-sm">
-            Control total de tu restaurante, con herramientas hechas para potenciar tu marca independiente.
-          </p>
-        </div>
-
-        <div className="bg-white rounded-3xl border border-neutral-200 shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-neutral-50 border-b border-neutral-200 text-[10px] font-bold text-neutral-500 uppercase tracking-wider">
-                  <th className="py-4 px-6">Funciones</th>
-                  <th className="py-4 px-6 bg-neutral-100/60 text-neutral-950 border-x border-neutral-200 font-display">FoodHub Platform</th>
-                  <th className="py-4 px-6">Apps de Delivery Clásicas</th>
-                  <th className="py-4 px-6">Sistemas POS Tradicionales</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-neutral-200 text-xs text-neutral-700 font-sans">
-                <tr className="hover:bg-neutral-50/40 transition-colors">
-                  <td className="py-4 px-6 font-semibold text-neutral-900">Comisión por venta</td>
-                  <td className="py-4 px-6 bg-neutral-100/30 text-neutral-950 font-bold border-x border-neutral-200">0% Comisión (Suscripción fija)</td>
-                  <td className="py-4 px-6 text-neutral-600 font-semibold">25% al 30% por cada orden</td>
-                  <td className="py-4 px-6">Costos variables + mantención</td>
-                </tr>
-                <tr className="hover:bg-neutral-50/40 transition-colors">
-                  <td className="py-4 px-6 font-semibold text-neutral-900">Base de datos de clientes</td>
-                  <td className="py-4 px-6 bg-neutral-100/30 text-neutral-950 font-bold border-x border-neutral-200">Propia y 100% exportable</td>
-                  <td className="py-4 px-6 text-neutral-500">Restringida por la app</td>
-                  <td className="py-4 px-6">Aislada (no sincronizada)</td>
-                </tr>
-                <tr className="hover:bg-neutral-50/40 transition-colors">
-                  <td className="py-4 px-6 font-semibold text-neutral-900">Asistente de Inteligencia Artificial</td>
-                  <td className="py-4 px-6 bg-neutral-100/30 text-neutral-950 font-bold border-x border-neutral-200">✓ Integrado para alérgenos, menús y pedidos</td>
-                  <td className="py-4 px-6 text-neutral-400">✗ No disponible</td>
-                  <td className="py-4 px-6 text-neutral-400">✗ No disponible</td>
-                </tr>
-                <tr className="hover:bg-neutral-50/40 transition-colors">
-                  <td className="py-4 px-6 font-semibold text-neutral-900">Apertura/Cierre de turnos de caja</td>
-                  <td className="py-4 px-6 bg-neutral-100/30 text-neutral-950 font-bold border-x border-neutral-200">✓ Arqueos y reportes automáticos</td>
-                  <td className="py-4 px-6 text-neutral-400">✗ No disponible</td>
-                  <td className="py-4 px-6">✓ Disponible con hardware caro</td>
-                </tr>
-                <tr className="hover:bg-neutral-50/40 transition-colors">
-                  <td className="py-4 px-6 font-semibold text-neutral-900">Soporte en línea y cambios en tiempo real</td>
-                  <td className="py-4 px-6 bg-neutral-100/30 text-neutral-950 font-bold border-x border-neutral-200">✓ Sincronización instantánea</td>
-                  <td className="py-4 px-6 text-neutral-500">Aprobación lenta de cartas</td>
-                  <td className="py-4 px-6">Requiere visita de técnico</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
@@ -733,10 +677,6 @@ export const LandingPage: React.FC = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
           <div className="absolute -bottom-10 left-0 w-48 h-48 bg-white/2 rounded-full blur-2xl pointer-events-none"></div>
 
-          <div className="bg-white/10 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2 border border-white/10 backdrop-blur-sm">
-            <Rocket className="w-8 h-8" />
-          </div>
-          
           <div className="max-w-2xl mx-auto space-y-4">
             <h3 className="text-[32px] sm:text-[44px] font-bold tracking-tight leading-[1.1]">
               Comienza ahora y toma el control

@@ -41,10 +41,6 @@ export const MainFeaturesSection: React.FC = () => {
 
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto space-y-3">
-        <span className="inline-flex items-center gap-1.5 text-xs font-bold text-neutral-500 uppercase tracking-widest font-mono bg-neutral-100 px-3 py-1 rounded-full border border-neutral-200">
-          <Zap className="w-3.5 h-3.5 text-neutral-950" />
-          <span>Ecosistema de Alto Rendimiento</span>
-        </span>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-neutral-950 tracking-tight leading-tight">
           Diseñado para maximizar la eficiencia y rentabilidad de tu negocio
         </h2>
@@ -275,13 +271,12 @@ export const MainFeaturesSection: React.FC = () => {
                 <button
                   key={table.id}
                   onClick={() => toggleTableStatus(table.id)}
-                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer select-none relative ${
-                    table.status === "available"
+                  className={`p-3 rounded-xl border text-left transition-all cursor-pointer select-none relative ${table.status === "available"
                       ? "bg-white border-neutral-200 hover:border-neutral-400"
                       : table.status === "occupied"
-                      ? "bg-neutral-950 text-white border-neutral-950 shadow-sm"
-                      : "bg-amber-500/10 border-amber-500 text-amber-950 font-bold"
-                  }`}
+                        ? "bg-neutral-950 text-white border-neutral-950 shadow-sm"
+                        : "bg-amber-500/10 border-amber-500 text-amber-950 font-bold"
+                    }`}
                 >
                   <div className="flex justify-between items-start mb-1">
                     <span className="font-display font-bold text-xs">{table.label}</span>
