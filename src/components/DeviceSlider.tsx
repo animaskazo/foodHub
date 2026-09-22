@@ -90,7 +90,7 @@ export const DeviceSlider: React.FC = () => {
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-8 relative z-10 flex flex-col flex-1 min-h-0 pt-16 sm:pt-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-8 relative z-10 flex flex-col flex-1 min-h-0 pt-8 sm:pt-8">
 
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto space-y-1 sm:space-y-2 mt-8 sm:mt-0 mb-1 sm:mb-2 shrink-0">
@@ -103,7 +103,7 @@ export const DeviceSlider: React.FC = () => {
         </div>
 
         {/* Slider Container */}
-        <div className="relative max-w-5xl mx-auto w-full h-[60vh]">
+        <div className="relative max-w-5xl mx-auto w-full h-[60vh] sm:h-[50vh]">
 
           {/* Navigation arrows (outside the image for a clean look) */}
           <button
