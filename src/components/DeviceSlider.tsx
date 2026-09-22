@@ -103,7 +103,7 @@ export const DeviceSlider: React.FC = () => {
         </div>
 
         {/* Slider Container */}
-        <div className="relative max-w-5xl mx-auto w-full h-[60vh] sm:h-[50vh]">
+        <div className="relative max-w-5xl mx-auto w-full h-[55vh] md:h-[60vh] sm:h-[100vh]">
 
           {/* Navigation arrows (outside the image for a clean look) */}
           <button
