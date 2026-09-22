@@ -86,24 +86,24 @@ export const DeviceSlider: React.FC = () => {
   return (
     <section
       id="main-content"
-      className="bg-white text-[#1d1d1f] pt-12 sm:pt-16 pb-20 sm:pb-28 relative overflow-hidden"
+      className="bg-white text-[#1d1d1f] h-screen max-h-screen flex flex-col relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-8 relative z-10 flex flex-col flex-1 min-h-0 pt-16 sm:pt-12">
 
         {/* Header */}
-        <div className="text-center max-w-4xl mx-auto space-y-5 mb-4 sm:mb-6">
-          <h2 className="text-[44px] sm:text-[56px] lg:text-[72px] font-bold tracking-tight text-[#1d1d1f] leading-[1.05]">
+        <div className="text-center max-w-4xl mx-auto space-y-1 sm:space-y-2 mt-8 sm:mt-0 mb-1 sm:mb-2 shrink-0">
+          <h2 className="text-[36px] sm:text-[48px] lg:text-[64px] font-bold tracking-tight text-[#1d1d1f] leading-[1.05]">
             Vende más. <br /> Automatiza todo.
           </h2>
-          <p className="text-[17px] sm:text-[20px] text-[#6e6e73] font-medium leading-relaxed max-w-3xl mx-auto">
-            Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, <span className="relative inline-block"><span className="relative z-10 font-semibold text-[#1d1d1f]">sin comisiones.</span><span className="absolute bottom-1 left-0 w-full h-2.5 bg-rose-200/60 -z-10 rounded-sm"></span></span>.
+          <p className="text-[15px] sm:text-[18px] text-[#6e6e73] font-normal leading-relaxed max-w-3xl mx-auto">
+            Simplifica el trabajo de tu restaurante y multiplica tus ventas. Nuestro ecosistema integral gestiona cada pedido en piloto automático, <span className="relative inline-block"><span className="relative z-10 font-semibold text-[#1d1d1f]">sin comisiones.</span><span className="absolute bottom-1 left-0 w-full h-2.5 bg-green-200/60 -z-10 rounded-sm"></span></span>
           </p>
         </div>
 
         {/* Slider Container */}
-        <div className="relative max-w-5xl mx-auto mt-0">
+        <div className="relative max-w-5xl mx-auto w-full h-[60vh]">
 
           {/* Navigation arrows (outside the image for a clean look) */}
           <button
@@ -123,7 +123,7 @@ export const DeviceSlider: React.FC = () => {
           </button>
 
           {/* Image Area */}
-          <div className="relative w-full h-[350px] sm:h-[500px] lg:h-[600px] flex items-start justify-center overflow-hidden">
+          <div className="relative w-full h-full flex items-end justify-center overflow-hidden">
             <AnimatePresence initial={false} custom={direction}>
               <motion.div
                 key={slides[current].id}
@@ -137,14 +137,14 @@ export const DeviceSlider: React.FC = () => {
                   opacity: { duration: 0.3 },
                   scale: { duration: 0.3 },
                 }}
-                className="absolute inset-0 flex items-start justify-center pt-2 sm:pt-4"
+                className="absolute inset-0 flex items-end justify-center"
               >
                 <img
                   src={slides[current].image}
                   alt={slides[current].label}
-                  className={`max-w-none object-contain object-top drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${slides[current].id === 'mobile'
-                    ? 'w-[230%] sm:w-[200%] lg:w-[180%] h-auto -mt-24 sm:-mt-36 lg:-mt-48'
-                    : 'w-[115%] sm:w-[100%] lg:w-[90%] h-auto'
+                  className={`max-w-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${slides[current].id === 'mobile'
+                    ? 'object-top w-[230%] sm:w-[200%] lg:w-[180%] h-auto relative top-[250px] sm:top-[200px] lg:top-[320px]'
+                    : 'object-bottom w-[115%] sm:w-[100%] lg:w-[90%] h-auto'
                     }`}
                   draggable={false}
                 />
@@ -152,60 +152,32 @@ export const DeviceSlider: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* Info + Controls below image */}
-          <div className="mt-12 flex flex-col items-center gap-6">
-            {/* Slide label + description */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={slides[current].id + "-info"}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.25 }}
-                className="text-center space-y-2.5"
+          {/* Dots navigation */}
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-30">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                onClick={() => goTo(index)}
+                aria-label={`Ir a ${slide.label}`}
+                className="relative cursor-pointer p-1 group flex items-center justify-center"
               >
-                <div className="inline-flex items-center gap-2.5">
-                  <span className="bg-neutral-100 text-neutral-600 text-[11px] font-bold font-mono px-3 py-1 rounded-full uppercase tracking-wider">
-                    {slides[current].badge}
-                  </span>
-                  <h3 className="text-[22px] sm:text-[26px] font-bold tracking-tight text-[#1d1d1f]">
-                    {slides[current].label}
-                  </h3>
-                </div>
-                <p className="text-[15px] sm:text-[16px] text-[#6e6e73] whitespace-nowrap overflow-hidden text-ellipsis px-4">
-                  {slides[current].description}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Dots navigation */}
-            <div className="flex items-center gap-2.5 pt-2">
-              {slides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  onClick={() => goTo(index)}
-                  aria-label={`Ir a ${slide.label}`}
-                  className="relative cursor-pointer p-1 group flex items-center justify-center"
-                >
-                  <div
-                    className={`h-[4px] rounded-full transition-all duration-300 ${index === current
-                      ? "w-10 bg-[#1d1d1f]"
-                      : "w-4 bg-neutral-200 group-hover:bg-neutral-300"
-                      }`}
+                <div
+                  className={`h-[4px] rounded-full transition-all duration-300 ${index === current
+                    ? "w-10 bg-[#1d1d1f]"
+                    : "w-4 bg-neutral-200 group-hover:bg-neutral-300"
+                    }`}
+                />
+                {index === current && !isPaused && (
+                  <motion.div
+                    className="absolute left-1 h-[4px] rounded-full bg-neutral-400"
+                    initial={{ width: 0 }}
+                    animate={{ width: "2.5rem" }}
+                    transition={{ duration: AUTOPLAY_INTERVAL / 1000, ease: "linear" }}
+                    key={`progress-${current}`}
                   />
-                  {/* Autoplay progress bar on active dot */}
-                  {index === current && !isPaused && (
-                    <motion.div
-                      className="absolute left-1 h-[4px] rounded-full bg-neutral-400"
-                      initial={{ width: 0 }}
-                      animate={{ width: "2.5rem" }}
-                      transition={{ duration: AUTOPLAY_INTERVAL / 1000, ease: "linear" }}
-                      key={`progress-${current}`}
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
+                )}
+              </button>
+            ))}
           </div>
         </div>
       </div>
