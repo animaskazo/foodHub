@@ -284,9 +284,7 @@ export const LandingPage: React.FC = () => {
                 { title: "Configuración en Minutos", desc: "Carga de menú por lotes e integración rápida para vender hoy." },
               ].map((f) => (
                 <div key={f.title} className="bg-white border border-black/[0.05] shadow-[0_2px_10px_rgba(0,0,0,0.02)] rounded-[20px] p-6 flex flex-col gap-3 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)] transition-shadow">
-                  <div className="w-8 h-8 rounded-[10px] bg-[#1d1d1f] flex items-center justify-center flex-shrink-0">
-                    <Check className="w-4 h-4 text-white stroke-[2.5]" />
-                  </div>
+                  <Check className="w-5 h-5 text-[#1d1d1f] stroke-[2.5] flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold text-[15px] text-[#1d1d1f] tracking-tight mb-1">{f.title}</h4>
                     <p className="text-[14px] text-[#6e6e73] leading-relaxed">{f.desc}</p>
@@ -478,11 +476,9 @@ export const LandingPage: React.FC = () => {
               className="bg-white border border-neutral-200 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all relative flex flex-col group"
             >
               <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <div className="bg-neutral-100 text-neutral-950 p-2 rounded-xl group-hover:bg-neutral-950 group-hover:text-white transition-colors">
-                    <Terminal className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider font-mono">Plan Base</span>
+                  <div className="flex items-center gap-2">
+                    <Terminal className="w-5 h-5 text-[#1d1d1f]" />
+                    <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider font-mono">Plan Base</span>
                 </div>
 
                 <div className="space-y-1">
@@ -545,11 +541,9 @@ export const LandingPage: React.FC = () => {
               </div>
 
               <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <div className="bg-white/10 text-white p-2 rounded-xl group-hover:bg-white/20 transition-colors">
-                    <Crown className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-bold text-white/50 uppercase tracking-wider font-mono">Plan Premium</span>
+                  <div className="flex items-center gap-2">
+                    <Crown className="w-5 h-5 text-white" />
+                    <span className="text-xs font-bold text-white/50 uppercase tracking-wider font-mono">Plan Premium</span>
                 </div>
 
                 <div className="space-y-1">
@@ -610,11 +604,9 @@ export const LandingPage: React.FC = () => {
               className="bg-white border border-neutral-200 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all relative flex flex-col group"
             >
               <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <div className="bg-neutral-100 text-neutral-950 p-2 rounded-xl group-hover:bg-neutral-950 group-hover:text-white transition-colors">
-                    <Store className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider font-mono">Restorant Pro</span>
+                  <div className="flex items-center gap-2">
+                    <Store className="w-5 h-5 text-[#1d1d1f]" />
+                    <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider font-mono">Restorant Pro</span>
                 </div>
 
                 <div className="space-y-1">
