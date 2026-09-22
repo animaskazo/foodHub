@@ -143,7 +143,7 @@ export const DeviceSlider: React.FC = () => {
                   src={slides[current].image}
                   alt={slides[current].label}
                   className={`max-w-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.15)] ${slides[current].id === 'mobile'
-                    ? 'object-top w-[230%] sm:w-[200%] lg:w-[180%] h-auto relative top-[250px] sm:top-[300px] lg:top-[320px]'
+                    ? 'object-top w-[230%] sm:w-[200%] lg:w-[180%] h-auto relative top-[250px] sm:top-[270px] lg:top-[320px]'
                     : 'object-bottom w-[115%] sm:w-[100%] lg:w-[90%] h-auto'
                     }`}
                   draggable={false}

@@ -256,20 +256,6 @@ export const LandingPage: React.FC = () => {
       {/* Hero: Device Showcase Slider */}
       <DeviceSlider />
 
-      {/* Trust Row (Moved up) */}
-      <section className="bg-white border-y border-black/[0.06] py-7 relative z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-[11px] font-bold text-[#aeaeb2] uppercase tracking-widest mb-5 font-mono">
-            Infraestructura y Partners
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-5">
-            {["Supabase", "Inteligencia Artificial", "Datos Encriptados", "Resend", "Klap", "Kapso"].map(t => (
-              <span key={t} className="text-[13px] font-semibold tracking-[-0.01em] text-[#8e8e93] hover:text-[#1d1d1f] transition-colors">{t}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Main Content Info Section (Refined, center-aligned) */}
       <section id="unete" className="relative overflow-hidden py-20 sm:py-24 bg-[#fcfcfd]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
