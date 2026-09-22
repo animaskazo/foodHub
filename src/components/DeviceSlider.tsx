@@ -86,14 +86,14 @@ export const DeviceSlider: React.FC = () => {
   return (
     <section
       id="main-content"
-      className="bg-white text-[#1d1d1f] h-screen max-h-screen flex flex-col relative overflow-hidden"
+      className="bg-white text-[#1d1d1f] h-auto flex flex-col relative overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-8 relative z-10 flex flex-col flex-1 min-h-0 pt-8 sm:pt-8">
 
         {/* Header */}
-        <div className="text-center max-w-4xl mx-auto space-y-1 sm:space-y-2 mt-8 sm:mt-0 mb-1 sm:mb-2 shrink-0">
+        <div className="text-center max-w-4xl mx-auto space-y-1 sm:space-y-2 mt-6 sm:mt-8 mb-1 sm:mb-4 shrink-0">
           <h2 className="text-[36px] sm:text-[48px] lg:text-[64px] font-bold tracking-tight text-[#1d1d1f] leading-[1.05]">
             Vende más. <br /> Automatiza todo.
           </h2>
